@@ -215,11 +215,88 @@
 
 /* Detale produktu */
 .cart-top-bar {
+  font-size: 20px;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
   margin-bottom: 15px;
+}
+.text-btn {
+  background: none; /* Usuwa szare tło przycisku */
+  border: none; /* Usuwa obramowanie */
+  color: #00a5a5; /* Charakterystyczny morski kolor Allegro */
+  font-size: 13px; /* Dopasowana wielkość czcionki */
+  font-weight: 600; /* Lekkie pogrubienie dla czytelności */
+  cursor: pointer; /* Zmienia kursor na rączkę przy najechaniu */
+  text-transform: uppercase; /* Wymusza wielkie litery jak na zrzucie */
+  padding: 0; /* Usuwa domyślne wewnętrzne odstępy */
+  transition: 0.2s; /* Płynna zmiana koloru przy interakcji */
+}
+
+.text-btn:hover {
+  color: #007a7a; /* Ciemniejszy odcień przy najechaniu */
+  text-decoration: underline; /* Podkreślenie przy najechaniu */
+}
+
+/* Przycisk w kształcie gwiazdy */
+.star-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Styl bazowy dla gwiazdy */
+.star-icon {
+  display: inline-block;
+  position: relative;
+  width: 24px; /* Wielkość gwiazdy */
+  height: 24px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: transform 0.2s;
+  margin-right: 8px; /* Odstęp od tekstu */
+}
+
+/* Powiększenie przy najechaniu */
+.star-checkbox:hover .star-icon {
+  transform: scale(1.1);
+}
+
+/* Rysowanie kształtu gwiazdy za pomocą clip-path */
+.star-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Kolor środka odznaczonej gwiazdy */
+  border: 15px solid #ccc; /* Kolor ramki odznaczonej gwiazdy */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  box-sizing: border-box;
+}
+
+/* Wygląd gwiazdy gdy JEST ZAZNACZONA */
+.star-checkbox input:checked ~ .star-icon::before {
+  background-color: #0a1a4e;
+  border-color: #0a1a4e;
 }
 
 .cart-product {

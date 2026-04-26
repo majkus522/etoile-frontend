@@ -28,6 +28,13 @@ const Suggestion = ({ price, name }) => (
 );
 
 function App() {
+  // Stan dla licznika sztuk
+  const [quantity, setQuantity] = useState(1);
+
+  // Funkcje do zmiany ilości
+  const increment = () => setQuantity((prev) => prev + 1);
+  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
   return (
     <div className="app-container">
       <nav className="navbar">
@@ -78,28 +85,37 @@ function App() {
           <div className="cart-main">
             <div className="white-card shadow">
               <div className="cart-top-bar">
-                <label>
-                  <input type="checkbox" defaultChecked /> cały koszyk
+                <label className="star-checkbox">
+                  <input type="checkbox" defaultChecked />
+                  <span className="star-icon"></span>
+                  {"cały koszyk"}
                 </label>
                 <button className="text-btn">USUŃ</button>
               </div>
 
               <div className="delivery-section">
-                <p className="vendor-info">
-                  Przesyłka od Oficjalny sklep Springos
-                </p>
                 <div className="cart-product">
-                  <input type="checkbox" defaultChecked />
-                  <div className="img-placeholder" />
+                  <label className="star-checkbox">
+                    <input type="checkbox" defaultChecked />
+                    <span className="star-icon"></span>
+                  </label>
+                  <a href="/" className="nav-logo">
+                    <img src={iconSample} alt="Logo" />
+                  </a>
                   <div className="product-info">
                     <p className="product-name">
                       BRANSOLETKA SŁÓŃCE 45 CM ŻÓŁTE ZŁOTO
                     </p>
                     <div className="product-row">
+                      {/* LICZNIK */}
                       <div className="qty-picker">
-                        <button>-</button>
-                        <input type="text" value="1" />
-                        <button>+</button>
+                        <button onClick={decrement} type="button">
+                          -
+                        </button>
+                        <input type="text" value={quantity} readOnly />
+                        <button onClick={increment} type="button">
+                          +
+                        </button>
                       </div>
                       <span className="price-big">6200 zł</span>
                     </div>
