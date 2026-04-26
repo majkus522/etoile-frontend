@@ -84,6 +84,7 @@ function App() {
         <div className="cart-layout">
           {/* LEWA STRONA: KOSZYK I PROPOZYCJE */}
           <div className="cart-main">
+            <h1 className="cart-heading">Koszyk</h1>
             <div className="white-card shadow">
               <div className="cart-top-bar">
                 <label className="star-checkbox">
@@ -100,8 +101,8 @@ function App() {
                     <input type="checkbox" defaultChecked />
                     <span className="star-icon"></span>
                   </label>
-                  <a href="/" className="nav-logo">
-                    <img src={iconSample} alt="Logo" />
+                  <a href="/" className="cart-koszyk">
+                    <img src={iconSample} alt="koszyk" />
                   </a>
                   <div className="product-info">
                     <p className="product-name">
@@ -134,8 +135,8 @@ function App() {
                 { p: "8000", t: "NASZYJNIK SERCE 45 CM RÓŻOWE ZŁOTO" },
               ].map((item, index) => (
                 <div key={index} className="upsell-box shadow">
-                  <a href="/" className="nav-logo">
-                    <img src={iconSample} alt="Logo" />
+                  <a href="/" className="upsell-img">
+                    <img src={iconSample} alt="produkt" />
                   </a>
                   <p className="price-mid">{item.p} zł</p>
                   <p className="upsell-text">{item.t}</p>
@@ -162,9 +163,9 @@ function App() {
                 <span className="final-price">6214,99 zł</span>
               </div>
 
-              <button className="btn-allegro blue">ZAPŁAĆ PÓŹNIEJ</button>
-              <button className="btn-allegro orange">DOSTAWA I PŁATNOŚĆ</button>
-              <button className="btn-allegro transparent">
+              <button className="btn-etoile blue">ZAPŁAĆ PÓŹNIEJ</button>
+              <button className="btn-etoile green">DOSTAWA I PŁATNOŚĆ</button>
+              <button className="btn-etoile transparent">
                 KONTYNUUJ ZAKUPY
               </button>
             </div>

@@ -195,11 +195,23 @@
   gap: 20px;
 }
 
+.cart-heading {
+  font-size: 40px;
+  color: #0a1a4e;
+  text-align: LEFT;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
 .cart-main {
   flex: 3;
 }
 .cart-sidebar {
   flex: 1.2;
+}
+
+.cart-koszyk img {
+  height: 150px;
 }
 
 .white-card {
@@ -359,6 +371,7 @@
 /* Upsell Grid */
 .upsell-heading {
   font-size: 20px;
+  color: #0a1a4e;
   text-align: left;
   font-family: "Canta one", serif;
   margin: 40px 0;
@@ -372,6 +385,8 @@
   background: white;
   padding: 15px;
   text-align: center;
+  height: 45%;
+  width: 100%;
 }
 .img-placeholder-small {
   height: 100px;
@@ -387,6 +402,9 @@
   color: #00a5a5;
   height: 30px;
   overflow: hidden;
+}
+.upsell-img img {
+  height: 65%;
 }
 .add-btn {
   background: none;
@@ -421,7 +439,7 @@
   margin: 15px 0;
 }
 
-.btn-allegro {
+.btn-etoile {
   width: 100%;
   padding: 14px;
   border: none;
@@ -431,30 +449,30 @@
   margin-bottom: 10px;
 }
 
-.btn-allegro.orange {
+.btn-etoile.green {
   background: #a39172;
   color: white;
   font-size: 16px;
 }
-.btn-allegro.orange:hover {
+.btn-etoile.green:hover {
   background: #c4ae89;
   color: white;
   font-size: 16px;
 }
-.btn-allegro.blue {
+.btn-etoile.blue {
   background: #0a1a4e;
   color: white;
   font-size: 16px;
 }
-.btn-allegro.blue:hover {
+.btn-etoile.blue:hover {
   background: #a1b0e6;
 }
-.btn-allegro.transparent {
+.btn-etoile.transparent {
   background: none;
   color: #a1b0e6;
   font-size: 16px;
 }
-.btn-allegro.transparent:hover {
+.btn-etoile.transparent:hover {
   color: #0a1a4e;
 }
 
