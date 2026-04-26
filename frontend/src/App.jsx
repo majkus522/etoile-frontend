@@ -8,6 +8,7 @@ import iconCart from "./assets/Cart.png";
 import iconLogo from "./assets/logo.png";
 import iconAcc from "./assets/account.png";
 import iconSample from "./assets/Sample.png";
+import iconProt from "./assets/Elogo.png";
 
 const CartItem = ({ title, price }) => (
   <div className="item">
@@ -149,7 +150,7 @@ function App() {
             <div className="white-card shadow summary-box">
               <div className="summary-line">
                 <span>Wartość produktów</span>
-                <span>97,99 zł</span>
+                <span>6200 zł</span>
               </div>
               <div className="summary-line">
                 <span>Dostawa od</span>
@@ -158,7 +159,7 @@ function App() {
               <hr className="divider-line" />
               <div className="summary-line total-line">
                 <span>Razem z dostawą</span>
-                <span className="final-price">112,98 zł</span>
+                <span className="final-price">6214,99 zł</span>
               </div>
 
               <button className="btn-allegro blue">ZAPŁAĆ PÓŹNIEJ</button>
@@ -169,9 +170,11 @@ function App() {
             </div>
 
             <div className="white-card shadow protection-box">
-              <div className="shield-icon">A</div>
+              <a href="/" className="protection-img">
+                <img src={iconProt} alt="Ochrona" />
+              </a>
               <div className="protection-text">
-                <strong>Allegro Ochrona Kupujących</strong>
+                <strong>Étoile Ochrona Kupujących</strong>
                 <p>
                   Wygodne zwroty, reklamacje online oraz 2 lata ochrony zakupu.
                 </p>

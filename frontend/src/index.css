@@ -462,7 +462,7 @@
   display: flex;
   gap: 15px;
   align-items: flex-start;
-  border-left: 4px solid #00a5a5;
+  border-left: 4px solid #0a1a4e;
 }
 .shield-icon {
   background: #00a5a5;
@@ -472,5 +472,10 @@
   font-weight: bold;
 }
 .protection-text {
-  font-size: 12px;
+  margin-top: 10px;
+  font-size: 15px;
+  text-align: left;
+}
+.protection-img img {
+  height: 60px;
 }
