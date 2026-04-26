@@ -28,13 +28,82 @@ const Suggestion = ({ price, name }) => (
   </div>
 );
 
+const ElementKoszyka = ({ produkt, naPlus, naMinus }) => (
+  <div className="cart-product">
+    <label className="star-checkbox">
+      <input type="checkbox" defaultChecked />
+      <span className="star-icon"></span>
+    </label>
+    <a href="/" className="cart-koszyk">
+      <img src={iconSample} alt="koszyk" />
+    </a>
+    <div className="product-info">
+      <p className="product-name">{produkt.nazwa}</p>
+      <div className="product-row">
+        {/* LICZNIK - Twoja struktura 1:1 */}
+        <div className="qty-picker">
+          <button onClick={naMinus} type="button">
+            -
+          </button>
+          <input type="text" value={produkt.ilosc} readOnly />
+          <button onClick={naPlus} type="button">
+            +
+          </button>
+        </div>
+        <span className="price-big">{produkt.cena} zł</span>
+      </div>
+    </div>
+  </div>
+);
+
+/* Komponetny polecanych */
+const ElementListy = ({ product }) => (
+  <div className="upsell-box shadow">
+    <a href="/" className="upsell-img">
+      <img src={iconSample} alt="produkt" />
+    </a>
+    <p className="price-mid">{product.price} zł</p>
+    <p className="upsell-text">{product.title}</p>
+    <button className="add-btn">DO KOSZYKA</button>
+  </div>
+);
+
 function App() {
   // Stan dla licznika sztuk
   const [quantity, setQuantity] = useState(1);
 
   // Funkcje do zmiany ilości
-  const increment = () => setQuantity((prev) => prev + 1);
-  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const increment = (id) => {
+    setProduktyWKoszyku((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, ilosc: p.ilosc + 1 } : p)),
+    );
+  };
+
+  const decrement = (id) => {
+    setProduktyWKoszyku((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, ilosc: Math.max(1, p.ilosc - 1) } : p,
+      ),
+    );
+  };
+
+  const [produktyWKoszyku, setProduktyWKoszyku] = useState([
+    {
+      id: 1,
+      nazwa: "BRANSOLETKA SŁÓŃCE 45 CM ŻÓŁTE ZŁOTO",
+      cena: "6200",
+      ilosc: 1,
+    },
+    { id: 2, nazwa: "PIERŚCIONEK DIAMENTOWY 585", cena: "3500", ilosc: 1 },
+  ]);
+
+  const suggestedProducts = [
+    { id: 1, price: "5000", title: "NASZYJNIK KONICZYNA 40 PLATYNA" },
+    { id: 2, price: "6600", title: "BRANSOLETKA KRZYŻ 20 CM ŻÓŁTE ZŁOTO" },
+    { id: 3, price: "2700", title: "NASZYJNIK GWIAZDKA 30 CM SREBRO" },
+    { id: 4, price: "8000", title: "NASZYJNIK SERCE 45 CM RÓŻOWE ZŁOTO" },
+  ];
 
   return (
     <div className="app-container">
@@ -96,52 +165,23 @@ function App() {
               </div>
 
               <div className="delivery-section">
-                <div className="cart-product">
-                  <label className="star-checkbox">
-                    <input type="checkbox" defaultChecked />
-                    <span className="star-icon"></span>
-                  </label>
-                  <a href="/" className="cart-koszyk">
-                    <img src={iconSample} alt="koszyk" />
-                  </a>
-                  <div className="product-info">
-                    <p className="product-name">
-                      BRANSOLETKA SŁÓŃCE 45 CM ŻÓŁTE ZŁOTO
-                    </p>
-                    <div className="product-row">
-                      {/* LICZNIK */}
-                      <div className="qty-picker">
-                        <button onClick={decrement} type="button">
-                          -
-                        </button>
-                        <input type="text" value={quantity} readOnly />
-                        <button onClick={increment} type="button">
-                          +
-                        </button>
-                      </div>
-                      <span className="price-big">6200 zł</span>
-                    </div>
-                  </div>
-                </div>
+                {/* 3. GENEROWANIE PRODUKTÓW Z LICZNIKAMI */}
+                {produktyWKoszyku.map((item) => (
+                  <ElementKoszyka
+                    key={item.id}
+                    produkt={item}
+                    naPlus={() => increment(item.id)}
+                    naMinus={() => decrement(item.id)}
+                  />
+                ))}
               </div>
             </div>
 
             <h2 className="upsell-heading">Dorzuć do przesyłki!</h2>
             <div className="upsell-grid">
-              {[
-                { p: "5000", t: "NASZYJNIK KONICZYNA 40 PLATYNA" },
-                { p: "6600", t: "BRANSOLETKA KRZYŻ 20 CM ŻÓŁTE ZŁOTO" },
-                { p: "2700", t: "NASZYJNIK GWIAZDKA 30 CM SREBRO" },
-                { p: "8000", t: "NASZYJNIK SERCE 45 CM RÓŻOWE ZŁOTO" },
-              ].map((item, index) => (
-                <div key={index} className="upsell-box shadow">
-                  <a href="/" className="upsell-img">
-                    <img src={iconSample} alt="produkt" />
-                  </a>
-                  <p className="price-mid">{item.p} zł</p>
-                  <p className="upsell-text">{item.t}</p>
-                  <button className="add-btn">DO KOSZYKA</button>
-                </div>
+              {/* GENEROWANIE LISTY: Mapujemy tablicę na komponenty */}
+              {suggestedProducts.map((item) => (
+                <ElementListy key={item.id} product={item} />
               ))}
             </div>
           </div>
