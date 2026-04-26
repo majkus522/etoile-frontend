@@ -239,6 +239,7 @@
 }
 .product-name {
   font-size: 14px;
+  text-align: LEFT;
   margin-bottom: 15px;
 }
 
@@ -259,7 +260,7 @@
   cursor: pointer;
 }
 .qty-picker input {
-  width: 40px;
+  width: 60px;
   text-align: center;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -280,8 +281,10 @@
 
 /* Upsell Grid */
 .upsell-heading {
-  font-size: 18px;
-  margin: 20px 0;
+  font-size: 20px;
+  text-align: left;
+  font-family: "Canta one", serif;
+  margin: 40px 0;
 }
 .upsell-grid {
   display: grid;
@@ -311,10 +314,13 @@
 .add-btn {
   background: none;
   border: none;
-  color: #00a5a5;
+  color: #a1b0e6;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
+}
+.add-btn:hover {
+  color: #0a1a4e;
 }
 
 /* Sidebar */
