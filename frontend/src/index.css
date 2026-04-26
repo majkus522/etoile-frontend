@@ -208,6 +208,7 @@
 }
 .cart-sidebar {
   flex: 1.2;
+  margin-top: 71.5px;
 }
 
 .cart-koszyk img {
@@ -496,4 +497,123 @@
 }
 .protection-img img {
   height: 60px;
+}
+
+@media (max-width: 768px) {
+  /* ZACHOWANE: 1. Zmniejszenie bazy i logo */
+  #root {
+    --navbar-height: 70px;
+  }
+  .nav-logo {
+    height: 50px;
+    font-size: 1.2rem;
+  }
+  .nav-logo img {
+    height: 45px;
+  }
+  .nav-iconCart-img,
+  .nav-iconFav-img,
+  .nav-iconAcc-img {
+    width: 28px;
+  }
+
+  /* ZACHOWANE: 2. Nagłówki i teksty */
+  .cart-heading {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  .cart-top-bar {
+    font-size: 14px;
+  }
+  .product-name {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .price-big {
+    font-size: 18px;
+  }
+
+  /* ZACHOWANE: 3. Obrazki i kontenery produktów */
+  .img-placeholder {
+    width: 70px;
+    height: 70px;
+  }
+  .white-card {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  /* NOWE: Układ strony (Sidebar pod Upsell) */
+  .cart-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-main {
+    order: 1; /* Produkty i Upsell są pierwsze */
+    width: 100%;
+  }
+  .cart-sidebar {
+    order: 2; /* Sidebar ląduje na samym dole */
+    width: 100%;
+    margin-top: 20px;
+    position: static;
+  }
+
+  /* ZMODYFIKOWANE: 4. Sekcja Upsell z przewijaniem poziomym */
+  .upsell-heading {
+    font-size: 16px;
+    margin: 15px 0 8px 0;
+  }
+
+  .upsell-grid {
+    display: flex; /* Zmieniamy grid na flex */
+    overflow-x: auto; /* Włączamy przewijanie w poziomie */
+    gap: 10px;
+    padding-bottom: 10px; /* Miejsce na pasek przewijania */
+    scroll-snap-type: x mandatory; /* Efekt "przyklejania" do kafelka */
+    -webkit-overflow-scrolling: touch; /* Płynne przewijanie na iOS */
+  }
+
+  .upsell-box {
+    flex: 0 0 45%; /* Każdy kafelek zajmuje nieco mniej niż połowę szerokości ekranu */
+    scroll-snap-align: start;
+    padding: 8px;
+    height: auto;
+    background: white; /* Upewniamy się, że tło jest białe */
+  }
+
+  .img-placeholder-small {
+    height: 55px;
+    margin-bottom: 5px;
+  }
+
+  .upsell-img img {
+    height: 55px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* Ukrywamy pasek przewijania, jeśli chcesz, żeby wyglądało to czyściej (opcjonalnie) */
+  .upsell-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .upsell-grid {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* ZACHOWANE: 5. Sidebar / Podsumowanie */
+  .final-price {
+    font-size: 20px;
+  }
+  .summary-line {
+    font-size: 12px;
+  }
+  .protection-text {
+    font-size: 12px;
+  }
+  .protection-img img {
+    height: 40px;
+  }
 }
