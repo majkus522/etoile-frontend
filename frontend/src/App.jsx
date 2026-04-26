@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+
+import iconFavourite from "./assets/ulubione.png";
+import iconCart from "./assets/Cart.png";
+import iconLogo from "./assets/logo.png";
+import iconAcc from "./assets/account.png";
+import iconSample from "./assets/Sample.png";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+    <div className="app-container">
+      <nav className="navbar">
+        <a href="/" className="nav-logo">
+          <img src={iconLogo} alt="Logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+        <ul className="nav-menu">
+          <li>
+            <a href="#kreator">Kreator</a>
+          </li>
+          <li>
+            <a href="#blog">Blog</a>
+          </li>
+        </ul>
+
+        <div className="nav-actions">
+          <a
+            href="ulubione"
+            className="nav-icon"
+            onClick={() => console.log("ulubione")}
+          >
+            <img
+              src={iconFavourite}
+              alt="ulubione"
+              className="nav-iconFav-img"
+            />
+          </a>
+          <a
+            href="koszyk"
+            className="nav-icon"
+            onClick={() => console.log("koszyk")}
+          >
+            <img src={iconCart} alt="koszyk" className="nav-iconCart-img" />
+          </a>
+          <a
+            href="konto"
+            className="nav-icon"
+            onClick={() => console.log("konto")}
+          >
+            <img src={iconAcc} alt="konto" className="nav-iconAcc-img" />
+          </a>
+        </div>
+      </nav>
+    </div>
+  );
 }
 
-export default App
+export default App;

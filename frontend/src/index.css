@@ -1,68 +1,183 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  box-sizing: border-box; /* Kluczowe: padding nie powiększa szerokości elementu */
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  --navbar-height: 120px;
+}
+
+.app-container {
+  width: 100vw;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2%;
+  height: var(--navbar-height);
+  background-color: #f9faf5; /*kolor paska*/
+  border-bottom: 1px solid #0a1a4e;
+  position: relative;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.nav-logo {
+  color: #000030;
+  font-family: "Canta one", serif;
+  font-weight: 1000;
+  transform: scaleY(1.1);
+  font-size: 1.8rem;
+  letter-spacing: 0px;
+}
+
+.nav-menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  font-family: "Monaco", sans-serif;
+  font-size: 1.2rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #504f57;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: color 0.2s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.nav-menu a:hover {
+  color: #121318;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-logo {
+  height: 100px;
+}
+
+.nav-logo img {
+  height: 100px;
+  object-fit: contain;
+}
+
+.nav-icon {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.nav-icon:hover {
+  background-color: #9e9eb0;
+}
+
+.nav-iconFav-img {
+  width: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  object-fit: contain;
+}
+
+.nav-iconCart-img {
+  width: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  object-fit: contain;
+}
+
+.nav-iconAcc-img {
+  width: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  object-fit: contain;
+}
+
+.nav-iconCart {
+  border: 1px solid #f9faf5;
+}
+
+.nav-iconCart:hover {
+  border: 1px solid black;
+}
+
+.main-content {
+  display: flex;
+  height: calc(100vh - var(--navbar-height));
+  overflow: hidden; /*blokada scrolla*/
+  background-color: #f9faf5;
+  padding: 0;
+}
+
+.left-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.divider {
+  width: 1px;
+  background-color: #0a1a4e;
+  height: 100%;
+  align-self: center;
+}
+
+.right-side {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card img {
+  align-self: center; /* Zmieniłem na center, żeby pasowało do napisu CENA */
+  max-width: 100%;
+  height: auto;
+}
+
+.card-title {
+  font-family: "Gill Sans", sans-serif;
+  color: #504f57;
+  margin-bottom: 5px;
+  font-weight: normal;
+  letter-spacing: 4px;
+}
+
+.card-price {
+  font-family: system-ui;
+  font-weight: bold;
+  color: #000030;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  transform: scaleX(1.1);
 }
