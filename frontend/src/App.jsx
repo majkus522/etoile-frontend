@@ -179,7 +179,21 @@ function App() {
             <div className="white-card shadow">
               <div className="cart-top-bar">
                 <label className="star-checkbox">
-                  <input type="checkbox" defaultChecked />
+                  <input
+                    type="checkbox"
+                    // Checkbox jest zaznaczony tylko wtedy, gdy w koszyku są produkty i WSZYSTKIE mają checked: true
+                    checked={
+                      produktyWKoszyku.length > 0 &&
+                      produktyWKoszyku.every((p) => p.checked)
+                    }
+                    // Funkcja zmieniająca stan wszystkich produktów na raz
+                    onChange={(e) => {
+                      const isChecked = e.target.checked;
+                      setProduktyWKoszyku((prev) =>
+                        prev.map((p) => ({ ...p, checked: isChecked })),
+                      );
+                    }}
+                  />
                   <span className="star-icon"></span>
                   {"cały koszyk"}
                 </label>
