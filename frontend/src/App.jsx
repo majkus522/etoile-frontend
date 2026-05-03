@@ -28,10 +28,14 @@ const Suggestion = ({ price, name }) => (
   </div>
 );
 
-const ElementKoszyka = ({ produkt, naPlus, naMinus }) => (
+const ElementKoszyka = ({ produkt, naPlus, naMinus, onToggleCheck }) => (
   <div className="cart-product">
     <label className="star-checkbox">
-      <input type="checkbox" defaultChecked />
+      <input
+        type="checkbox"
+        checked={produkt.checked}
+        onChange={onToggleCheck}
+      />
       <span className="star-icon"></span>
     </label>
     <a href="/" className="cart-koszyk">
@@ -72,8 +76,25 @@ function App() {
   // Stan dla licznika sztuk
   const [quantity, setQuantity] = useState(1);
 
-  // Funkcje do zmiany ilości
+  // Produkty w koszyku
+  const [produktyWKoszyku, setProduktyWKoszyku] = useState([
+    {
+      id: 1,
+      nazwa: "BRANSOLETKA SŁÓŃCE 45 CM ŻÓŁTE ZŁOTO",
+      cena: "6200",
+      ilosc: 1,
+      checked: true, // Dodane pole
+    },
+    {
+      id: 2,
+      nazwa: "PIERŚCIONEK DIAMENTOWY 585",
+      cena: "3500",
+      ilosc: 1,
+      checked: true,
+    },
+  ]);
 
+  // Funkcje do zmiany ilości
   const increment = (id) => {
     setProduktyWKoszyku((prev) =>
       prev.map((p) => (p.id === id ? { ...p, ilosc: p.ilosc + 1 } : p)),
@@ -88,15 +109,16 @@ function App() {
     );
   };
 
-  const [produktyWKoszyku, setProduktyWKoszyku] = useState([
-    {
-      id: 1,
-      nazwa: "BRANSOLETKA SŁÓŃCE 45 CM ŻÓŁTE ZŁOTO",
-      cena: "6200",
-      ilosc: 1,
-    },
-    { id: 2, nazwa: "PIERŚCIONEK DIAMENTOWY 585", cena: "3500", ilosc: 1 },
-  ]);
+  // Obsługa zaznaczania pojedynczego produktu
+  const toggleCheck = (id) => {
+    setProduktyWKoszyku((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, checked: !p.checked } : p)),
+    );
+  };
+
+  const removeSelected = () => {
+    setProduktyWKoszyku((prev) => prev.filter((p) => !p.checked));
+  };
 
   const suggestedProducts = [
     { id: 1, price: "5000", title: "NASZYJNIK KONICZYNA 40 PLATYNA" },
@@ -161,7 +183,9 @@ function App() {
                   <span className="star-icon"></span>
                   {"cały koszyk"}
                 </label>
-                <button className="text-btn">USUŃ</button>
+                <button className="text-btn" onClick={removeSelected}>
+                  USUŃ ZAZNACZONE
+                </button>
               </div>
 
               <div className="delivery-section">
@@ -172,6 +196,7 @@ function App() {
                     produkt={item}
                     naPlus={() => increment(item.id)}
                     naMinus={() => decrement(item.id)}
+                    onToggleCheck={() => toggleCheck(item.id)}
                   />
                 ))}
               </div>
