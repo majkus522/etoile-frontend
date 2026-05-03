@@ -68,7 +68,9 @@ const ElementListy = ({ product }) => (
     </a>
     <p className="price-mid">{product.price} zł</p>
     <p className="upsell-text">{product.title}</p>
-    <button className="add-btn">DO KOSZYKA</button>
+    <button className="add-btn" onClick={() => onAdd(product)}>
+      DO KOSZYKA
+    </button>
   </div>
 );
 
@@ -93,6 +95,30 @@ function App() {
       checked: true,
     },
   ]);
+
+  // FUNKCJA DODAWANIA DO KOSZYKA
+  const addToCart = (product) => {
+    setProduktyWKoszyku((prev) => {
+      // Sprawdzamy czy produkt już jest w koszyku
+      const exists = prev.find((p) => p.id === product.id + 100); // +100 aby uniknąć konfliktów ID z sugestii
+      if (exists) {
+        return prev.map((p) =>
+          p.id === product.id + 100 ? { ...p, ilosc: p.ilosc + 1 } : p,
+        );
+      }
+      // Jeśli nie ma, dodajemy nowy obiekt
+      return [
+        ...prev,
+        {
+          id: product.id + 100,
+          nazwa: product.title,
+          cena: product.price,
+          ilosc: 1,
+          checked: true,
+        },
+      ];
+    });
+  };
 
   // Funkcje do zmiany ilości
   const increment = (id) => {
@@ -126,6 +152,12 @@ function App() {
     { id: 3, price: "2700", title: "NASZYJNIK GWIAZDKA 30 CM SREBRO" },
     { id: 4, price: "8000", title: "NASZYJNIK SERCE 45 CM RÓŻOWE ZŁOTO" },
   ];
+
+  const sumaProduktow = produktyWKoszyku.reduce(
+    (acc, curr) => acc + Number(curr.cena) * curr.ilosc,
+    0,
+  );
+  const kosztDostawy = 14.99;
 
   return (
     <div className="app-container">
@@ -220,7 +252,7 @@ function App() {
             <div className="upsell-grid">
               {/* GENEROWANIE LISTY: Mapujemy tablicę na komponenty */}
               {suggestedProducts.map((item) => (
-                <ElementListy key={item.id} product={item} />
+                <ElementListy key={item.id} product={item} onAdd={addToCart} />
               ))}
             </div>
           </div>
@@ -230,16 +262,26 @@ function App() {
             <div className="white-card shadow summary-box">
               <div className="summary-line">
                 <span>Wartość produktów</span>
-                <span>6200 zł</span>
+                <span>{sumaProduktow} zł</span>
               </div>
+
               <div className="summary-line">
                 <span>Dostawa od</span>
+                {/* Wyświetlamy z przecinkiem dla użytkownika jako tekst */}
                 <span>14,99 zł</span>
               </div>
+
               <hr className="divider-line" />
+
               <div className="summary-line total-line">
                 <span>Razem z dostawą</span>
-                <span className="final-price">6214,99 zł</span>
+                <span className="final-price">
+                  {/* Dodajemy sumę produktów i koszt dostawy */}
+                  {(sumaProduktow + kosztDostawy)
+                    .toFixed(2)
+                    .replace(".", ",")}{" "}
+                  zł
+                </span>
               </div>
 
               <button className="btn-etoile blue">ZAPŁAĆ PÓŹNIEJ</button>
