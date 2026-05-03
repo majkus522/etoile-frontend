@@ -54,14 +54,14 @@ const ElementKoszyka = ({ produkt, naPlus, naMinus, onToggleCheck }) => (
             +
           </button>
         </div>
-        <span className="price-big">{produkt.cena} zł</span>
+        <span className="price-big">{produkt.cena * produkt.ilosc} zł</span>
       </div>
     </div>
   </div>
 );
 
 /* Komponetny polecanych */
-const ElementListy = ({ product }) => (
+const ElementListy = ({ product, onAdd }) => (
   <div className="upsell-box shadow">
     <a href="/" className="upsell-img">
       <img src={iconSample} alt="produkt" />
