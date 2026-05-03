@@ -195,7 +195,7 @@ function App() {
                     }}
                   />
                   <span className="star-icon"></span>
-                  {"cały koszyk"}
+                  <div className="star-napis">{"cały koszyk"}</div>
                 </label>
                 <button className="text-btn" onClick={removeSelected}>
                   USUŃ ZAZNACZONE

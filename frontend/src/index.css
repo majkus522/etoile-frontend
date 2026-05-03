@@ -252,6 +252,13 @@
   text-decoration: underline; /* Podkreślenie przy najechaniu */
 }
 
+.star-checkbox {
+  display: flex; /* Ustawia dzieci w rzędzie */
+  align-items: center; /* Centruje gwiazdkę i napis w pionie względem siebie */
+  gap: 8px; /* Tworzy odstęp między gwiazdką a napisem */
+  cursor: pointer; /* Zmienia kursor na rączkę przy najechaniu */
+}
+
 /* Przycisk w kształcie gwiazdy */
 .star-checkbox input {
   position: absolute;
@@ -269,13 +276,21 @@
   height: 24px;
   cursor: pointer;
   vertical-align: middle;
-  transition: transform 0.2s;
+  transition:
+    transform 0.2s,
+    rotate 0.3s ease;
   margin-right: 8px; /* Odstęp od tekstu */
+}
+
+.star-napis {
+  top: 5px;
+  text-transform: uppercase;
 }
 
 /* Powiększenie przy najechaniu */
 .star-checkbox:hover .star-icon {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  rotate: 20deg;
 }
 
 /* Rysowanie kształtu gwiazdy za pomocą clip-path */
@@ -316,6 +331,7 @@
   display: flex;
   gap: 15px;
   align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .img-placeholder {
