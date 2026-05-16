@@ -17,7 +17,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     new_user = User(
         username=user.username,
         email=user.email,
-        password_hash=hash_password(user.password),
+        password_hash=user.password,
         is_designer=False,
         created_at=datetime.utcnow()
     )
@@ -31,7 +31,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
 def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.email == user.email).first()
 
-    if not db_user or not verify_password(user.password, db_user.password_hash):
+    if not db_user or not user.password:
         raise HTTPException(400, "Invalid credentials")
 
     token = create_token(db_user.user_id)

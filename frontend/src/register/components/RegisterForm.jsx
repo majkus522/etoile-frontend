@@ -38,7 +38,7 @@ function RegisterForm() {
     });
   }
 
-  function handleRegister(event) {
+  async function handleRegister(event) {
     event.preventDefault();
 
     if (formData.password !== formData.repeatPassword) {
@@ -50,27 +50,51 @@ function RegisterForm() {
       setError("Musisz zaakceptować regulamin.");
       return;
     }
+    
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,20}$/;
+
+    if (!passwordRegex.test(formData.password)) {
+      setError(
+        "Hasło musi mieć 8-20 znaków, małą literę, dużą literę, cyfrę i znak specjalny."
+      );
+      return;
+    }
 
     const registerData = {
+      username: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
       password: formData.password,
     };
 
-    console.log("Dane rejestracji:", registerData);
+try {
+    const response = await fetch("http://localhost:8000/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(registerData),
+    });
 
-    // W przyszłości tutaj będzie wysłanie danych do backendu/bazy:
-    // await fetch(...)
+    const result = await response.json();
+
+    if (!response.ok) {
+      setError(result.message || "Nie udało się utworzyć konta.");
+      return;
+    }
+
+    console.log("Rejestracja udana:", result);
 
     clearForm();
+    navigate("/login");
 
-    //navigate("/login");
+  } catch (error) {
+    console.error("Błąd połączenia:", error);
   }
-
+}
+   
   return (
     <div className="registerFormContainer">
-      <h2 className="formTitle">Jesteś tu pierwszy raz?</h2>
+      <h2 className="formTitle">Rejestracja</h2>
 
       <form onSubmit={handleRegister}>
         <div className="inputGroup">

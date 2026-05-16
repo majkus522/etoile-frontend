@@ -1,12 +1,16 @@
 ﻿// components/LoginForm.jsx
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
 
     const loginData = {
@@ -14,10 +18,32 @@ function LoginForm() {
       password: password,
     };
 
-    console.log("Dane logowania:", loginData);
-    //Później można tutaj wysłać dane do backendu
+  try {
+      const response = await fetch("http://localhost:8000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
 
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.message || "Nie udało się zalogować.");
+        return;
+      }
+
+      console.log("Odpowiedź z backendu:", result);
+      setMessage("Dane zostały wysłane poprawnie.");
+
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Błąd połączenia z backendem:", error);
+    }
   }
+
 
   return (
     <div className="loginContainer">

@@ -10,6 +10,13 @@
   max-width: 450px;
 }
 
+.registerFormContainer {
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  max-height: 588px;
+}
+
 .registerButton {
   width: 100%;
   background: transparent;
@@ -42,4 +49,24 @@
   font-weight: bold;
   line-height: 1.4;
   color: #333;
+}
+
+.rulesCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formError {
+  width: 100%;
+  color: rgb(150, 0, 0);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 146, 146);
+  padding: 10px;
+  border-style: solid;
+  border-color:rgb(255, 212, 212);
 }

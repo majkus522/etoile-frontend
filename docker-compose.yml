@@ -17,6 +17,9 @@ services:
         stdin_open: true
         tty: true
         command: ["bash", "/workspace/init.sh"]
+        networks:
+            main:  
+                ipv4_address: 192.168.0.2
     
     backend:
         build:
@@ -34,6 +37,9 @@ services:
         stdin_open: true
         tty: true
         command: ["ash", "/workspace/init.sh"]
+        networks:
+            main:  
+                ipv4_address: 192.168.0.3
 
     postgres_db:
         image: postgres:15
@@ -44,10 +50,18 @@ services:
             POSTGRES_PASSWORD: supertajnehaslo123
             POSTGRES_DB: etoile_db
         ports:
-            - "5432:5432"
+            - "5400:5432"
         volumes:
             - pgdata:/var/lib/postgresql/data
             - ./sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+        networks:
+            main:  
+                ipv4_address: 192.168.0.4
 volumes:
-  node_modules:
-  pgdata:
+    node_modules:
+    pgdata:
+networks:
+    main:
+        ipam:
+            config:
+                - subnet: 192.168.0.0/24
