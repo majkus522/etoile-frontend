@@ -29,25 +29,25 @@ services:
         ports:
             - "127.0.0.1:8000:8000"
         depends_on:
-            - db
+            - postgres_db
         restart: unless-stopped
         stdin_open: true
         tty: true
         command: ["ash", "/workspace/init.sh"]
 
-    db:
+    postgres_db:
         image: postgres:15
-        container_name: postgres_db
+        container_name: etoile_database
         restart: always
         environment:
-            POSTGRES_USER: myuser
-            POSTGRES_PASSWORD: admin
-            POSTGRES_DB: etoitoitest
+            POSTGRES_USER: etoile_admin
+            POSTGRES_PASSWORD: supertajnehaslo123
+            POSTGRES_DB: etoile_db
         ports:
             - "5432:5432"
         volumes:
-            - postgres_data:/var/lib/postgresql/data
-
+            - pgdata:/var/lib/postgresql/data
+            - ./sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
 volumes:
-    node_modules:
-    postgres_data:
+  node_modules:
+  pgdata:
