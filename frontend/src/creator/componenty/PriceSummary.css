@@ -1,0 +1,51 @@
+.price-summary {
+  margin-top: 34px;
+  border: 1.5px solid #e6e0d6;
+  padding: 34px 40px;
+  background-color: #fbfaf7;
+}
+
+.price-summary-title {
+  margin: 0 0 28px 0;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  color: #6c665f;
+}
+
+.price-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.price-summary-divider {
+  margin: 22px 0;
+  border-top: 1.5px solid #ddd7cc;
+}
+
+.price-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0a1128;
+}
+
+@media (max-width: 700px) {
+  .price-summary {
+    padding: 24px;
+  }
+
+  .price-summary-row {
+    font-size: 17px;
+  }
+
+  .price-summary-total {
+    font-size: 24px;
+  }
+}

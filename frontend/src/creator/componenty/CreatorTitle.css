@@ -1,0 +1,16 @@
+.creator-title {
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0 0 18px 0;
+  color: #1f1f1f;
+  text-align: left;
+  width: 100%;
+  display: block;
+  font-family: Georgia, serif;
+}
+
+@media (max-width: 700px) {
+  .creator-title {
+    font-size: 30px;
+  }
+}

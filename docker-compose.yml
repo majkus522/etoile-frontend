@@ -17,6 +17,9 @@ services:
         stdin_open: true
         tty: true
         command: ["bash", "/workspace/init.sh"]
+        networks:
+            main:  
+                ipv4_address: 192.168.0.2
     
     backend:
         build:
@@ -28,10 +31,37 @@ services:
             - ./backend:/workspace
         ports:
             - "127.0.0.1:8000:8000"
+        depends_on:
+            - postgres_db
         restart: unless-stopped
         stdin_open: true
         tty: true
         command: ["ash", "/workspace/init.sh"]
+        networks:
+            main:  
+                ipv4_address: 192.168.0.3
 
+    postgres_db:
+        image: postgres:15
+        container_name: etoile_database
+        restart: always
+        environment:
+            POSTGRES_USER: etoile_admin
+            POSTGRES_PASSWORD: supertajnehaslo123
+            POSTGRES_DB: etoile_db
+        ports:
+            - "5400:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+            - ./sql/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+        networks:
+            main:  
+                ipv4_address: 192.168.0.4
 volumes:
     node_modules:
+    pgdata:
+networks:
+    main:
+        ipam:
+            config:
+                - subnet: 192.168.0.0/24

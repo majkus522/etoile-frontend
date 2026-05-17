@@ -1,0 +1,61 @@
+.charms-section {
+  margin-top: 34px;
+}
+
+.charms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.charms-title {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  color: #6c665f;
+}
+
+.charms-arrow-button {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6c665f;
+  border-radius: 0;
+}
+
+.charms-arrow-button:focus,
+.charms-arrow-button:focus-visible,
+.charms-arrow-button:active {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.charms-arrow {
+  transition: transform 0.4s ease;
+}
+
+.charms-arrow-closed {
+  transform: rotate(180deg);
+}
+
+.charms-placeholder {
+  margin: 0;
+  font-size: 18px;
+  color: #3f3f3f;
+}
+
+.charms-bottom-line {
+  margin-top: 28px;
+  border-top: 1.5px solid #ddd7cc;
+}
