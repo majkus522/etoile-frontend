@@ -42,3 +42,31 @@
   margin-top: 20px;
   transition: opacity 0.3s;
 }
+
+.formError {
+  width: 100%;
+  color: rgb(150, 0, 0);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  background-color: rgb(255, 146, 146);
+  padding: 10px;
+  border-style: solid;
+  border-color: rgb(255, 212, 212);
+}
+
+.formSuccess {
+  width: 100%;
+  color: rgb(0, 90, 30);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 15px 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  background-color: rgb(160, 255, 190);
+  padding: 10px;
+  border-style: solid;
+  border-color: rgb(210, 255, 220);
+}

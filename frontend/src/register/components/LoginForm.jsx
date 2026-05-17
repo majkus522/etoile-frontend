@@ -29,10 +29,10 @@ function LoginForm() {
 
       const result = await response.json();
 
-      if (!response.ok) {
-        setError(result.message || "Nie udało się zalogować.");
-        return;
-      }
+    if (!response.ok) {
+      setError(result.detail || "Nie udało się zalogować.");
+      return;
+    }
 
       console.log("Odpowiedź z backendu:", result);
       setMessage("Dane zostały wysłane poprawnie.");
@@ -41,6 +41,7 @@ function LoginForm() {
       setPassword("");
     } catch (error) {
       console.error("Błąd połączenia z backendem:", error);
+      setError("Nie można połączyć się z serwerem.");
     }
   }
 
@@ -69,6 +70,9 @@ function LoginForm() {
             required
           />
         </div>
+
+        {error && <p className="formError">{error}</p>}
+
 
         <button type="submit" className="loginButton">
           Zaloguj się

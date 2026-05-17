@@ -78,7 +78,7 @@ try {
     const result = await response.json();
 
     if (!response.ok) {
-      setError(result.message || "Nie udało się utworzyć konta.");
+      setError(result.detail || "Nie udało się utworzyć konta.");
       return;
     }
 
