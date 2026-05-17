@@ -1,0 +1,60 @@
+.creator-box {
+  background-color: #f8f6f1;
+}
+
+.creator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.creator-section-label {
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  color: #6c665f;
+}
+
+.creator-arrow-button {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6c665f;
+  border-radius: 0;
+}
+
+.creator-arrow-button:focus,
+.creator-arrow-button:focus-visible,
+.creator-arrow-button:active {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.creator-bottom-line {
+  margin-top: 20px;
+  border-top: 1.5px solid #ddd7cc;
+}
+
+@media (max-width: 700px) {
+  .creator-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

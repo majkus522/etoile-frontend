@@ -1,0 +1,28 @@
+.jewelry-type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1.5px solid #e6e0d6;
+  margin-bottom: 48px;
+}
+
+.jewelry-type-button {
+  height: 42px;
+  border: none;
+  background-color: #f8f6f1;
+  color: #2f2f2f;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.jewelry-type-button-active {
+  background-color: #0a1128;
+  color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  .jewelry-type-selector {
+    grid-template-columns: 1fr;
+  }
+}
