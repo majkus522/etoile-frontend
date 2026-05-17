@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Koszyk from "./koszyk/Koszyk.jsx";
 import Register from "./register/App.jsx";
 import Creator from "./creator/Creator.jsx";
-import Post_creator from "./post_creator/Post_creator.jsx";
+import PostCreator from "./postCreator/PostCreator.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/koszyk" element={<Koszyk />} />
         <Route path="/register" element={<Register />} />
         <Route path="/creator" element={<Creator />} />
-        <Route path="/post_creator" element={<Post_creator />} />
+        <Route path="/postCreator" element={<PostCreator />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

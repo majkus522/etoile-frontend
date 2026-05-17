@@ -1,39 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-#root {
+.post-creator-page {
   width: 100%;
-  margin: 0;
-  padding: 0;
-  --navbar-height: 120px;
-}
-
-.app-container {
-  width: 100vw;
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
   background-color: #f9faf5;
 }
 
-.main-content {
-  width: 100%;
-  min-height: calc(100vh - var(--navbar-height));
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Pozwala na swobodne układanie zawartości */
-  padding: 40px 20px;
-}
-
-/* Kontener główny kreatora */
-.kreator-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.kreator-container {
+.post-creator-wrapper {
   width: 100%;
   max-width: 900px;
   display: flex;
@@ -42,31 +15,28 @@
   gap: 35px;
 }
 
-/* Stylizacja inputu tytułu (wygląda jak tekst ze zdjęcia) */
-.kreator-title-input {
+.post-creator-title-input {
   width: 100%;
   border: none;
   background: transparent;
   text-align: center;
-  font-family: "Playfair Display", serif, Georgia, var(--serif-font);
+  font-family: "Playfair Display", serif, Georgia;
   font-size: 2.8rem;
   color: #121318;
   outline: none;
 }
 
-.kreator-title-input::placeholder {
-  color: #121318;
+.post-creator-title-input::placeholder {
+  color: #707070;
 }
 
-/* Układ boksów: zdjęcie obok opisu */
-.kreator-row {
+.post-creator-row {
   display: flex;
   width: 100%;
   gap: 25px;
-  height: 450px; /* Stała wysokość sekcji roboczej */
+  height: 450px;
 }
 
-/* Boks na zdjęcie */
 .image-upload-box {
   flex: 1;
   border: 1px solid #707070;
@@ -90,16 +60,14 @@
   object-fit: cover;
 }
 
-/* Kolorystyka i fonty napisów pomocniczych */
 .placeholder-text {
-  color: #c2b280; /* Złoty/beżowy odcień napisu */
+  color: #c2b280;
   font-family: "Gill Sans", sans-serif;
   font-size: 1.1rem;
 }
 
-/* Jedno duże pole tekstowe na opis */
-.kreator-description-input {
-  flex: 1.8; /* Jest trochę szersze niż boks ze zdjęciem */
+.post-creator-description-input {
+  flex: 1.8;
   border: 1px solid #707070;
   background-color: #ffffff;
   padding: 20px;
@@ -110,14 +78,13 @@
   color: #333333;
 }
 
-.kreator-description-input::placeholder {
+.post-creator-description-input::placeholder {
   color: #c2b280;
   font-family: "Gill Sans", sans-serif;
 }
 
-/* Ciemny przycisk zapisu posta na dole */
 .save-post-btn {
-  background-color: #0a1a4e; /* Granat ze zdjęcia */
+  background-color: #0a1a4e;
   color: #ffffff;
   border: none;
   padding: 16px 70px;
