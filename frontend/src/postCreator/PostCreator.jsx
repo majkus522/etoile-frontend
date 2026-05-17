@@ -8,6 +8,7 @@ import PostCreatorDescription from "./components/PostCreatorDescription.jsx";
 import PostCreatorActions from "./components/PostCreatorActions.jsx";
 
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer";
 
 function PostCreator() {
   const [title, setTitle] = useState("");
@@ -21,7 +22,7 @@ function PostCreator() {
   };
 
   return (
-    <>
+    <div className="app-container">
       <Navbar />
       <main className="post-creator-page">
         <div className="post-creator-wrapper">
@@ -43,7 +44,8 @@ function PostCreator() {
           <PostCreatorActions onSave={handleSave} />
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
 
