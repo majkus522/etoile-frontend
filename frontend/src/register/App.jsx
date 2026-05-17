@@ -2,8 +2,8 @@
 import LoginForm from "./components/LoginForm"
 import RegisterInfo from "./components/RegisterInfo"
 import RegisterForm from "./components/RegisterForm"
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import './App.css'
 
 export default function App(){

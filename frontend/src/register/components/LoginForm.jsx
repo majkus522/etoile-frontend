@@ -35,10 +35,15 @@ function LoginForm() {
     }
 
       console.log("Odpowiedź z backendu:", result);
+      localStorage.setItem("token", result.access_token);
+      
+
       setMessage("Dane zostały wysłane poprawnie.");
 
       setEmail("");
       setPassword("");
+
+
     } catch (error) {
       console.error("Błąd połączenia z backendem:", error);
       setError("Nie można połączyć się z serwerem.");
