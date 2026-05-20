@@ -7,7 +7,6 @@ services:
         working_dir: /workspace
         volumes:
             - ./frontend:/workspace
-            - node_modules:/workspace/node_modules
         ports:
             - "5173:5173"
         environment:
@@ -56,7 +55,6 @@ services:
             main:  
                 ipv4_address: 192.168.0.4
 volumes:
-    node_modules:
     pgdata:
 networks:
     main:
