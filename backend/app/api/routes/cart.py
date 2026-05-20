@@ -9,7 +9,7 @@ from app.models.cart import Cart
 # obsługa danych związanych z koszykiem #
 # ===================================== #
 
-router = APIRouter(prefix="/cart", tags=["Cart"])
+router = APIRouter() #prefix="/cart", tags=["Cart"]
 
 # ========== dodawanie do koszyka ========== #
 @router.post("/")
@@ -17,14 +17,14 @@ def add_to_cart(
     product_id: int,
     project_id: int,
     quantity: int,
-    user: Annotated[str | None, Header()] = None,
+    user_id: Annotated[str | None, Header()] = None,
     db: Session = Depends(get_db)
 ):
     cart_item = Cart(
         product_id=product_id,
         project_id=project_id,
         quantity=quantity,
-        user=user
+        user_id=user_id
     )
 
     db.add(cart_item)
