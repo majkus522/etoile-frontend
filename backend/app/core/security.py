@@ -11,14 +11,21 @@ from app.db.session import get_db
 from app.models.user import User
 from app.core.config import SECRET_KEY, ALGORITHM
 
+# ================================== #
+# obsługa zabezpieczeń i autoryzacji #
+# ================================== #
+
 pwd_context = CryptContext(schemes=["bcrypt"])
 
+# ========== hashowanie hasła ========== # -- nie wiem czy jest używane
 def hash_password(password):
     return pwd_context.hash(password)
 
+# ========== weryfikacja hasła ========== # -- nie wiem czy jest używane
 def verify_password(password, hashed):
     return pwd_context.verify(password, hashed)
 
+# ========== stworzenie tokenu zalogowanego użytkownika ========== #
 def create_token(user_id: int):
     payload = {
         "sub": user_id,
@@ -28,6 +35,7 @@ def create_token(user_id: int):
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
+# ========== pobranie aktualnie zalogowanego użytkownika ========== #
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

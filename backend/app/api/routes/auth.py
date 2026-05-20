@@ -6,8 +6,13 @@ from app.schemas.user import UserCreate, UserLogin
 from app.core.security import hash_password, verify_password, create_token
 from datetime import datetime
 
+# =============================== #
+# obsługa autoryzacji użytkownika #
+# =============================== #
+
 router = APIRouter()
 
+# ========== obsługa rejestracji użytkownika ========== #
 @router.post("/register")
 def register(user: UserCreate, db: Session = Depends(get_db)):
     existing = db.query(User).filter(User.email == user.email).first()
@@ -48,6 +53,7 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
             detail="Wystąpił błąd serwera podczas rejestracji."
         )
 
+# ========== obsługa logowania ========== #
 @router.post("/login")
 def login(user: UserLogin, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.email == user.email).first()
