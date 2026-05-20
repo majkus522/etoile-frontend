@@ -1,54 +1,54 @@
 /* Główny kontener strony */
 .appContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: Playfair;
-  font-weight: 100;
-  max-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	font-family: Playfair;
+	font-weight: 100;
+	max-height: 100vh;
 }
 
 /* Kontener dzielący ekran */
 .splitScreen {
-  width: 100%;
-  display: flex;
-  flex: 1; /* Zajmuje całą dostępną przestrzeń pod navbarem */
+	width: 100%;
+	display: flex;
+	flex: 1; /* Zajmuje całą dostępną przestrzeń pod navbarem */
 }
 
 /* Lewa strona - Logowanie */
 .loginSide {
-  flex: 1; /* Zajmuje 50% szerokości */
-  background-color: #fcfcfc; /* Bardzo jasny szary/biały */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  min-width: 0;
-  max-height: 668px;
+	flex: 1; /* Zajmuje 50% szerokości */
+	background-color: #fcfcfc; /* Bardzo jasny szary/biały */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	min-width: 0;
+	max-height: 668px;
 }
 
 /* Prawa strona - Rejestracja */
 .registerSide {
-  flex: 1; /* Zajmuje 50% szerokości */
-  background-color: #f2ede4; /* Ten beżowy kolor z Twojego projektu */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  border-left: 1px solid #d1d1d1; /* Delikatna linia oddzielająca */
-  min-width: 0;
-  max-height: 668px;
+	flex: 1; /* Zajmuje 50% szerokości */
+	background-color: #f2ede4; /* Ten beżowy kolor z Twojego projektu */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px;
+	border-left: 1px solid #d1d1d1; /* Delikatna linia oddzielająca */
+	min-width: 0;
+	max-height: 668px;
 }
 
 /* Responsywność - na telefonach jedna pod drugą */
 @media (max-width: 768px) {
-  .splitScreen {
-    flex-direction: column;
-  }
+	.splitScreen {
+		flex-direction: column;
+	}
 }
 
 @font-face {
-  font-family: Playfair;
-  src: url("../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+	font-family: Playfair;
+	src: url("../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
 }
