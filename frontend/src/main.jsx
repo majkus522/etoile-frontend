@@ -8,6 +8,7 @@ import Register from "./register/App.jsx";
 import Creator from "./creator/Creator.jsx";
 import PostCreator from "./postCreator/PostCreator.jsx";
 import Blog from "./blog/Blog.jsx";
+import { useEffect } from "react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -23,3 +24,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+export function useTitle(title)
+{
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+}

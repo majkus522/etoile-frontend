@@ -1,14 +1,11 @@
 import { useState } from "react";
 import "./Koszyk.css";
 
-import iconFavourite from "../assets/ulubione.png";
-import iconCart from "../assets/cart.png";
-import iconLogo from "../assets/logo.png";
-import iconAcc from "../assets/account.png";
 import iconSample from "../assets/Sample.png";
 import iconProt from "../assets/Elogo.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import {useTitle} from "../main.jsx";
 
 const CartItem = ({ title, price }) => (
   <div className="item">
@@ -159,6 +156,7 @@ function App() {
   );
   const kosztDostawy = 14.99;
 
+  useTitle("Etoile - Koszyk");
   return (
     <div className="app-container">
       <Navbar />

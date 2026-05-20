@@ -10,6 +10,7 @@ import CharmsSelector from "./componenty/CharmsSelector.jsx";
 import PriceSummary from "./componenty/PriceSummary.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import {useTitle} from "../main.jsx";
 
 function Creator() {
   const [selectedMaterial, setSelectedMaterial] = useState(1);
@@ -18,6 +19,7 @@ function Creator() {
   const [selectedLength, setSelectedLength] = useState("18 cm");
   const [isLengthOpen, setIsLengthOpen] = useState(true);
 
+  useTitle("Etoile - Kreator");
   return (
       <>
         <Navbar />

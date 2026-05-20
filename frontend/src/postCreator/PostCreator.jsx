@@ -9,6 +9,7 @@ import PostCreatorActions from "./components/PostCreatorActions.jsx";
 
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer";
+import {useTitle} from "../main.jsx";
 
 function PostCreator() {
   const [title, setTitle] = useState("");
@@ -21,6 +22,7 @@ function PostCreator() {
     alert("Post został zapisany!");
   };
 
+  useTitle("Etoile - Blog - Stwórz post");
   return (
     <div className="app-container">
       <Navbar />

@@ -1,19 +1,16 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 import iconFavourite from "./assets/ulubione.png";
-import iconCart from "./assets/cart.png";
-import iconLogo from "./assets/logo.png";
-import iconAcc from "./assets/account.png";
 import iconSample from "./assets/Sample.png";
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import {useTitle} from "./main.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
 
+  useTitle("Etoile");
   return (
     <div className="app-container">
        <Navbar />
