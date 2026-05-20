@@ -6,4 +6,4 @@ RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
 
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+CMD ["npm", "run", "code"]

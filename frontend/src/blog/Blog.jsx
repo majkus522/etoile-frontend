@@ -8,27 +8,29 @@ import BlogPostList from "./component/BlogPostList.jsx";
 import BlogPostPage from "./component/BlogPostPage.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import { useTitle } from "../main.jsx";
 
 export default function Blog() {
-  return (
-    <main className="blog-page">
-      <div className="blog-container">
-        <Routes>
-          <Route 
-            index 
-            element={
-              <>
-                  <Navbar />
-                <BlogHeader />
-                <AddPostButton />
-                <BlogPostList />
-                  <Footer />
-              </>
-            }
-          />
-          <Route path=":id" element={<BlogPostPage />} />
-        </Routes>
-      </div>
-    </main>
-  );
+	useTitle("Etoile - Blog");
+	return (
+		<main className="blog-page">
+			<div className="blog-container">
+				<Routes>
+					<Route
+						index
+						element={
+							<>
+								<Navbar />
+								<BlogHeader />
+								<AddPostButton />
+								<BlogPostList />
+								<Footer />
+							</>
+						}
+					/>
+					<Route path=":id" element={<BlogPostPage />} />
+				</Routes>
+			</div>
+		</main>
+	);
 }

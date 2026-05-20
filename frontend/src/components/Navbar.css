@@ -1,66 +1,62 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2%;
-  height: var(--navbar-height);
-  background-color: #f9faf5; /*kolor paska*/
-  border-bottom: 1px solid #0a1a4e;
-  position: relative;
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 2%;
+	height: var(--navbar-height);
+	background-color: #f9faf5; /*kolor paska*/
+	border-bottom: 1px solid #0a1a4e;
+	position: relative;
+	top: 0;
+	width: 100%;
+	box-sizing: border-box;
 }
 
-.navbar div
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
+.navbar div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
 }
 
 .navbar div a,
-.navbar div button
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  font-size: 20px;
-  color: #0a1a4e;
-  text-decoration: none;
-  border-radius: 10px;
+.navbar div button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	padding: 10px;
+	border: none;
+	background-color: transparent;
+	font-size: 20px;
+	color: #0a1a4e;
+	text-decoration: none;
+	border-radius: 10px;
 }
 
 .navbar div a:hover,
-.navbar div button:hover
-{
-  background-color: #898989;
+.navbar div button:hover {
+	background-color: #898989;
 }
 
-.navbar div img
-{
-  height: 40px;
-}
-
-.nav-logo {
-  color: #000030;
-  font-family: "Canta one", serif;
-  font-weight: 1000;
-  transform: scaleY(1.1);
-  font-size: 1.8rem;
-  letter-spacing: 0px;
+.navbar div img {
+	height: 40px;
 }
 
 .nav-logo {
-  height: 100px;
+	color: #000030;
+	font-family: "Canta one", serif;
+	font-weight: 1000;
+	transform: scaleY(1.1);
+	font-size: 1.8rem;
+	letter-spacing: 0px;
+}
+
+.nav-logo {
+	height: 100px;
 }
 
 .nav-logo img {
-  height: 100px;
-  object-fit: contain;
+	height: 100px;
+	object-fit: contain;
 }

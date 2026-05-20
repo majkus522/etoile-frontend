@@ -8,18 +8,25 @@ import Register from "./register/App.jsx";
 import Creator from "./creator/Creator.jsx";
 import PostCreator from "./postCreator/PostCreator.jsx";
 import Blog from "./blog/Blog.jsx";
+import { useEffect } from "react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/koszyk" element={<Koszyk />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/creator" element={<Creator />} />
-        <Route path="/postCreator" element={<PostCreator />} />
-        <Route path="/blog" element={<Blog />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+	<React.StrictMode>
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<App />} />
+				<Route path="/koszyk" element={<Koszyk />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/creator" element={<Creator />} />
+				<Route path="/postCreator" element={<PostCreator />} />
+				<Route path="/blog" element={<Blog />} />
+			</Routes>
+		</BrowserRouter>
+	</React.StrictMode>
 );
+
+export function useTitle(title) {
+	useEffect(() => {
+		document.title = title;
+	}, [title]);
+}

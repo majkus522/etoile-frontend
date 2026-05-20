@@ -10,51 +10,53 @@ import CharmsSelector from "./componenty/CharmsSelector.jsx";
 import PriceSummary from "./componenty/PriceSummary.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import { useTitle } from "../main.jsx";
 
 function Creator() {
-  const [selectedMaterial, setSelectedMaterial] = useState(1);
-  const [isOpen, setIsOpen] = useState(true);
-  const [selectedType, setSelectedType] = useState("bracelet");
-  const [selectedLength, setSelectedLength] = useState("18 cm");
-  const [isLengthOpen, setIsLengthOpen] = useState(true);
+	const [selectedMaterial, setSelectedMaterial] = useState(1);
+	const [isOpen, setIsOpen] = useState(true);
+	const [selectedType, setSelectedType] = useState("bracelet");
+	const [selectedLength, setSelectedLength] = useState("18 cm");
+	const [isLengthOpen, setIsLengthOpen] = useState(true);
 
-  return (
-      <>
-        <Navbar />
-    <main className="creator-page">
-      <div className="creator-wrapper">
-        <CreatorTitle />
+	useTitle("Etoile - Kreator");
+	return (
+		<>
+			<Navbar />
+			<main className="creator-page">
+				<div className="creator-wrapper">
+					<CreatorTitle />
 
-        <JewelryTypeSelector
-          selectedType={selectedType}
-          setSelectedType={setSelectedType}
-        />
+					<JewelryTypeSelector
+						selectedType={selectedType}
+						setSelectedType={setSelectedType}
+					/>
 
-        <MaterialSelector
-          selectedMaterial={selectedMaterial}
-          setSelectedMaterial={setSelectedMaterial}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
+					<MaterialSelector
+						selectedMaterial={selectedMaterial}
+						setSelectedMaterial={setSelectedMaterial}
+						isOpen={isOpen}
+						setIsOpen={setIsOpen}
+					/>
 
-        <LengthSelector
-          selectedType={selectedType}
-          selectedLength={selectedLength}
-          setSelectedLength={setSelectedLength}
-          isLengthOpen={isLengthOpen}
-          setIsLengthOpen={setIsLengthOpen}
-        />
+					<LengthSelector
+						selectedType={selectedType}
+						selectedLength={selectedLength}
+						setSelectedLength={setSelectedLength}
+						isLengthOpen={isLengthOpen}
+						setIsLengthOpen={setIsLengthOpen}
+					/>
 
-        <CharmsSelector />
+					<CharmsSelector />
 
-        <PriceSummary />
+					<PriceSummary />
 
-        <CreatorActions />
-      </div>
-    </main>
-        <Footer />
-      </>
-  );
+					<CreatorActions />
+				</div>
+			</main>
+			<Footer />
+		</>
+	);
 }
 
 export default Creator;

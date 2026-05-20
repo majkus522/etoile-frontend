@@ -3,190 +3,189 @@ import { useNavigate } from "react-router-dom";
 import "./RegisterInfo.css";
 
 function RegisterForm() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    repeatPassword: "",
-    acceptedRules: false,
-  });
+	const [formData, setFormData] = useState({
+		email: "",
+		firstName: "",
+		lastName: "",
+		password: "",
+		repeatPassword: "",
+		acceptedRules: false,
+	});
 
-  const [error, setError] = useState("");
+	const [error, setError] = useState("");
 
-  function handleChange(event) {
-    const { name, value, type, checked } = event.target;
+	function handleChange(event) {
+		const { name, value, type, checked } = event.target;
 
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
-    });
+		setFormData({
+			...formData,
+			[name]: type === "checkbox" ? checked : value,
+		});
 
-    setError("");
-  }
+		setError("");
+	}
 
-  function clearForm() {
-    setFormData({
-      email: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      repeatPassword: "",
-      acceptedRules: false,
-    });
-  }
+	function clearForm() {
+		setFormData({
+			email: "",
+			firstName: "",
+			lastName: "",
+			password: "",
+			repeatPassword: "",
+			acceptedRules: false,
+		});
+	}
 
-  async function handleRegister(event) {
-    event.preventDefault();
+	async function handleRegister(event) {
+		event.preventDefault();
 
-    if (formData.password !== formData.repeatPassword) {
-      setError("Hasła nie są identyczne.");
-      return;
-    }
+		if (formData.password !== formData.repeatPassword) {
+			setError("Hasła nie są identyczne.");
+			return;
+		}
 
-    if (!formData.acceptedRules) {
-      setError("Musisz zaakceptować regulamin.");
-      return;
-    }
-    
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,20}$/;
+		if (!formData.acceptedRules) {
+			setError("Musisz zaakceptować regulamin.");
+			return;
+		}
 
-    if (!passwordRegex.test(formData.password)) {
-      setError(
-        "Hasło musi mieć 8-20 znaków, małą literę, dużą literę, cyfrę i znak specjalny."
-      );
-      return;
-    }
+		const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,20}$/;
 
-    const registerData = {
-      username: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      password: formData.password,
-    };
+		if (!passwordRegex.test(formData.password)) {
+			setError(
+				"Hasło musi mieć 8-20 znaków, małą literę, dużą literę, cyfrę i znak specjalny."
+			);
+			return;
+		}
 
-try {
-    const response = await fetch("http://localhost:8000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(registerData),
-    });
+		const registerData = {
+			username: `${formData.firstName} ${formData.lastName}`,
+			email: formData.email,
+			password: formData.password,
+		};
 
-    const result = await response.json();
+		try {
+			const response = await fetch("http://localhost:8000/auth/register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(registerData),
+			});
 
-    if (!response.ok) {
-      setError(result.detail || "Nie udało się utworzyć konta.");
-      return;
-    }
+			const result = await response.json();
 
-    console.log("Rejestracja udana:", result);
+			if (!response.ok) {
+				setError(result.detail || "Nie udało się utworzyć konta.");
+				return;
+			}
 
-    const loginData = {
-      email: formData.email,
-      password: formData.password,
-    };
+			console.log("Rejestracja udana:", result);
 
-    const responseLogin = await fetch("http://localhost:8000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
+			const loginData = {
+				email: formData.email,
+				password: formData.password,
+			};
 
-    const resultLogin = await responseLogin.json();
+			const responseLogin = await fetch("http://localhost:8000/auth/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(loginData),
+			});
 
-    localStorage.setItem("token", resultLogin.access_token);
+			const resultLogin = await responseLogin.json();
 
-    clearForm();
-    navigate("/");
+			localStorage.setItem("token", resultLogin.access_token);
 
-  } catch (error) {
-    console.error("Błąd połączenia:", error);
-  }
-}
-   
-  return (
-    <div className="registerFormContainer">
-      <h2 className="formTitle">Rejestracja</h2>
+			clearForm();
+			navigate("/");
+		} catch (error) {
+			console.error("Błąd połączenia:", error);
+		}
+	}
 
-      <form onSubmit={handleRegister}>
-        <div className="inputGroup">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+	return (
+		<div className="registerFormContainer">
+			<h2 className="formTitle">Rejestracja</h2>
 
-        <div className="inputGroup">
-          <input
-            type="text"
-            name="firstName"
-            placeholder="Imię"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+			<form onSubmit={handleRegister}>
+				<div className="inputGroup">
+					<input
+						type="email"
+						name="email"
+						placeholder="Email"
+						value={formData.email}
+						onChange={handleChange}
+						required
+					/>
+				</div>
 
-        <div className="inputGroup">
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Nazwisko"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
+				<div className="inputGroup">
+					<input
+						type="text"
+						name="firstName"
+						placeholder="Imię"
+						value={formData.firstName}
+						onChange={handleChange}
+						required
+					/>
+				</div>
 
-        <div className="inputGroup">
-          <input
-            type="password"
-            name="password"
-            placeholder="Hasło"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+				<div className="inputGroup">
+					<input
+						type="text"
+						name="lastName"
+						placeholder="Nazwisko"
+						value={formData.lastName}
+						onChange={handleChange}
+						required
+					/>
+				</div>
 
-        <div className="inputGroup">
-          <input
-            type="password"
-            name="repeatPassword"
-            placeholder="Powtórz hasło"
-            value={formData.repeatPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
+				<div className="inputGroup">
+					<input
+						type="password"
+						name="password"
+						placeholder="Hasło"
+						value={formData.password}
+						onChange={handleChange}
+						required
+					/>
+				</div>
 
-        <label className="rulesCheckbox">
-          <input
-            type="checkbox"
-            name="acceptedRules"
-            checked={formData.acceptedRules}
-            onChange={handleChange}
-          />
-          Akceptuję i rozumiem regulamin
-        </label>
+				<div className="inputGroup">
+					<input
+						type="password"
+						name="repeatPassword"
+						placeholder="Powtórz hasło"
+						value={formData.repeatPassword}
+						onChange={handleChange}
+						required
+					/>
+				</div>
 
-        {error && <p className="formError">{error}</p>}
+				<label className="rulesCheckbox">
+					<input
+						type="checkbox"
+						name="acceptedRules"
+						checked={formData.acceptedRules}
+						onChange={handleChange}
+					/>
+					Akceptuję i rozumiem regulamin
+				</label>
 
-        <button type="submit" className="registerButton">
-          Załóż konto
-        </button>
-      </form>
-    </div>
-  );
+				{error && <p className="formError">{error}</p>}
+
+				<button type="submit" className="registerButton">
+					Załóż konto
+				</button>
+			</form>
+		</div>
+	);
 }
 
 export default RegisterForm;
