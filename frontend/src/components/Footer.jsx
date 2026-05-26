@@ -11,7 +11,13 @@ function Footer() {
 
 				<div className="footerLinks">
 					<a href="#">Regulamin</a>
-					<a href="#">Polityka prywatności</a>
+					<a
+						href="../polityka_prywatnosci.pdf"
+						className="cookie-link"
+						target="_blank"
+						rel="noopener noreferrer">
+						Polityka Prywatności
+					</a>
 					<a href="#">Kontakt</a>
 				</div>
 			</div>
