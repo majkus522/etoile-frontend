@@ -1,19 +1,15 @@
 .blog-page {
-	position: fixed;
 	inset: 0;
 	width: 100%;
-	height: 100vh;
 	background-color: #f8f6f1;
-	padding: 30px 24px;
 	box-sizing: border-box;
-	overflow-y: auto;
 	color: #1f1f1f;
 }
 
 .blog-container {
 	width: 100%;
-	max-width: 950px;
 	margin: 0 auto;
+	padding: 30px 50px;
 	box-sizing: border-box;
 }
 
@@ -25,7 +21,7 @@
 	font-weight: 400;
 	color: #1f1f1f;
 	font-family: Georgia, serif;
-	text-align: left;
+	text-align: center;
 }
 
 /* dodaj post */
@@ -37,9 +33,8 @@
 }
 
 .blog-add-post-button {
-	height: 52px;
 	width: 280px;
-	padding: 0 24px;
+	padding: 20px 24px;
 	border: none;
 	background-color: #0a1128;
 	color: #ffffff;
@@ -48,6 +43,7 @@
 	cursor: pointer;
 	border-radius: 0;
 	transition: background-color 0.2s ease;
+	text-decoration: none;
 }
 
 .blog-add-post-button:hover {

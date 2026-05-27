@@ -13,24 +13,26 @@ import { useTitle } from "../main.jsx";
 export default function Blog() {
 	useTitle("Etoile - Blog");
 	return (
-		<main className="blog-page">
-			<div className="blog-container">
-				<Routes>
-					<Route
-						index
-						element={
-							<>
-								<Navbar />
-								<BlogHeader />
-								<AddPostButton />
-								<BlogPostList />
-								<Footer />
-							</>
-						}
-					/>
-					<Route path=":id" element={<BlogPostPage />} />
-				</Routes>
-			</div>
-		</main>
+		<>
+			<Navbar />
+			<main className="blog-page">
+				<div className="blog-container">
+					<Routes>
+						<Route
+							index
+							element={
+								<>
+									<BlogHeader />
+									{localStorage.getItem("token") != null && <AddPostButton />}
+									<BlogPostList />
+								</>
+							}
+						/>
+						<Route path=":id" element={<BlogPostPage />} />
+					</Routes>
+				</div>
+			</main>
+			<Footer />
+		</>
 	);
 }

@@ -9,6 +9,7 @@ import Creator from "./creator/Creator.jsx";
 import PostCreator from "./postCreator/PostCreator.jsx";
 import Blog from "./blog/Blog.jsx";
 import { useEffect } from "react";
+import Konto from "./konto/Konto.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 				<Route path="/creator" element={<Creator />} />
 				<Route path="/postCreator" element={<PostCreator />} />
 				<Route path="/blog" element={<Blog />} />
+				<Route path="/konto/*" element={<Konto />} />
 			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>

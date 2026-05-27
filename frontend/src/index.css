@@ -6,14 +6,12 @@
 }
 
 #root {
-	width: 100%;
 	margin: 0;
 	padding: 0;
 	--navbar-height: 120px;
 }
 
 .app-container {
-	width: 100vw;
 	min-height: 100vh;
 }
 

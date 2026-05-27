@@ -6,6 +6,7 @@ import iconSample from "./assets/Sample.png";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useTitle } from "./main.jsx";
+import CookieConsent from "./components/CookieConsent.jsx";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -56,7 +57,7 @@ function App() {
 					</div>
 				</div>
 			</main>
-
+			<CookieConsent />
 			<Footer />
 		</div>
 	);

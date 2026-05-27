@@ -33,14 +33,18 @@
 	align-items: center;
 }
 
-.footerLinks a {
+.footerLinks a,
+.footerLinks button {
 	color: #001540;
 	text-decoration: none;
 	font-size: 14px;
 	font-weight: bold;
+	background-color: transparent;
+	border: none;
 }
 
-.footerLinks a:hover {
+.footerLinks a:hover,
+.footerLinks button:hover {
 	text-decoration: underline;
 	cursor: pointer;
 }
