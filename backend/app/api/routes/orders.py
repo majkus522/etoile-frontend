@@ -1,32 +1,133 @@
+from datetime import datetime
 from typing import Annotated
-from fastapi import APIRouter, Depends, Header
+from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
+from app.models.cart import Cart
 from app.models.order import Order
-#from app.schemas.order import OrderCreate
+from app.models.order_item import OrderItem
+from app.schemas.order import OrderUpdate, OrderDelete
 
 # ================ #
 # obsługa zamówień #
 # ================ #
 router = APIRouter()
-'''
+
+# ========== dodawanie zamówienia ========== #
 @router.post("/")
-def add_order(
-        order: OrderCreate,
-        db: Session = Depends(get_db),
-        user: Annotated[str | None, Header()] = None,
+def create_order(
+    user_id: Annotated[int | None, Header()],
+    db: Session = Depends(get_db)
 ):
-    new_order = Order(
-        user_id = user.id,
-        status = order.status,
-        created_at = order.created_at,
+    # =========================
+    # pobranie koszyka użytkownika
+    # =========================
+    cart_items = (
+        db.query(Cart)
+        .filter(Cart.user_id == user_id)
+        .all()
+    )
+    if not cart_items:
+        raise HTTPException(
+            status_code=404,
+            detail="Cart is empty"
+        )
+    try:
+        # =========================
+        # tworzenie zamówienia
+        # =========================
+        new_order = Order(
+            user_id=user_id,
+            status="new",
+            created_at=datetime.utcnow()
+        )
+        db.add(new_order)
+        #pobranie ID ordera
+        db.flush()
+
+        # =========================
+        # cart -> order_items
+        # =========================
+        for item in cart_items:
+            order_item = OrderItem(
+                order_id=new_order.order_id,
+                product_id=item.product_id,
+                project_id=item.project_id,
+                quantity=item.quantity,
+                price_at_purchase=item.price_at_purchase
+            )
+            db.add(order_item)
+        # =========================
+        # usuwanie koszyka
+        # =========================
+        for item in cart_items:
+            db.delete(item)
+        db.commit()
+        return {
+            "msg": "order created",
+            "order_id": new_order.order_id
+        }
+
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+# ========== zmiana statusu ========== #
+@router.patch("/")
+def update_order(
+    order: OrderUpdate,
+    db: Session = Depends(get_db)
+):
+    db_order = (
+        db.query(Order)
+        .filter(Order.order_id == order.order_id)
+        .first()
+    )
+    if not db_order:
+        raise HTTPException(
+            status_code=404,
+            detail="Order not found"
+        )
+    db_order.status = order.status
+    db.commit()
+
+    return {"msg": "ok"}
+
+# ========== usuwanie zamówienia ========== #
+@router.delete("/")
+def delete_order(
+    order: OrderDelete,
+    db: Session = Depends(get_db)
+):
+
+    db_order = (
+        db.query(Order)
+        .filter(Order.order_id == order.order_id)
+        .first()
     )
 
-    db.add(new_order)
+    if not db_order:
+        raise HTTPException(
+            status_code=404,
+            detail="Order not found"
+        )
+
+    db.delete(db_order)
     db.commit()
-    db.refresh(new_order)
-    return new_order
-'''
+
+    return {"msg": "deleted"}
+
+# ========== pobranie listy zamówień ========== #
 @router.get("/")
-def get_orders(db: Session = Depends(get_db)):
-    return db.query(Order).all()
+def get_orders(
+    user_id: Annotated[int | None, Header()] = None,
+    db: Session = Depends(get_db)
+):
+    return (
+        db.query(Order)
+        .filter(Order.user_id == user_id)
+        .all()
+    )

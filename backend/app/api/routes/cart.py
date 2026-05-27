@@ -42,7 +42,7 @@ def delete_cart(
 ):
     cart_item = (
         db.query(Cart)
-        .filter(Cart.cart_item_id == cart_id)
+        .filter(Cart.cart_item_id == cart_id.cart_item_id)
         .first()
     )
 
