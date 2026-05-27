@@ -5,6 +5,7 @@ from app.models.user import User
 from app.schemas.user import UserCreate, UserLogin
 from app.core.security import hash_password, verify_password, create_token
 from datetime import datetime
+from app.core.email import send_mail
 
 # =============================== #
 # obsługa autoryzacji użytkownika #
@@ -31,10 +32,12 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
             is_designer=False,
             created_at=datetime.utcnow()
         )
-
+        
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
+        send_mail(new_user.email, "Witaj w Etoile!", "Dziękujemy za rejestrację")
+
 
         return {"msg": "Konto zostało utworzone."}
 
