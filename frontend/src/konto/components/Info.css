@@ -1,0 +1,60 @@
+div.infoContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+section.info-edit {
+	display: grid;
+	grid-template-columns: 200px 200px;
+	gap: 20px;
+	padding: 50px;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+section.info-edit:not(:first-child) {
+	border-top: 1px solid #acacac;
+}
+
+section.info-edit input,
+section.info-edit button {
+	padding: 7px;
+	font-size: 14px;
+	border: 1px solid #acacac;
+	border-radius: 3px;
+	width: auto;
+}
+
+section.info-edit button {
+	text-align: center;
+}
+
+section.info-edit input:hover,
+section.info-edit button:hover {
+	background-color: #ababab;
+}
+
+.formError {
+	color: rgb(150, 0, 0);
+	font-size: 14px;
+	font-weight: bold;
+	margin: 15px 0;
+	text-align: center;
+	overflow-wrap: break-word;
+	background-color: rgb(255, 146, 146);
+	padding: 10px;
+	border-style: solid;
+	border-color: rgb(255, 212, 212);
+	grid-column: span 2;
+}
+
+button.buttonDelete {
+	border: 5px solid rgb(152 3 3);
+	background-color: rgb(211 12 12);
+	color: #efefef;
+}
+
+button.buttonDelete:hover {
+	background-color: rgb(246 67 67) !important;
+}

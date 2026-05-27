@@ -21,14 +21,14 @@ def verify_password(password, hashed):
 
 def create_token(user_id: int):
     payload = {
-        "sub": user_id,
+        "sub": str(user_id),
         "exp": datetime.utcnow() + timedelta(hours=24*7)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+def get_current_user(token: str, db: Session = Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Niepoprawny token",
@@ -36,16 +36,16 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: int = payload.get("sub")
+        user_id: int = int(payload.get("sub"))
 
         if user_id is None:
             raise credentials_exception
 
-    except JWTError:
+    except JWTError as e:
         raise credentials_exception
 
     user = db.query(User).filter(User.user_id == user_id).first()
     if user is None:
         raise credentials_exception
 
-    return user
+    return user_id

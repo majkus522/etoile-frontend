@@ -16,26 +16,29 @@ export default function Navbar() {
 				<img src={iconLogo} alt="Logo" />
 			</a>
 			<div>
-				<a href="blog">Blog</a>
+				<a href="/blog">Blog</a>
 				{localStorage.getItem("token") != null && (
 					<>
-						<a href="creator">Kreator</a>
+						<a href="/creator">Kreator</a>
 						<a
-							href="ulubione"
+							href="/ulubione"
 							className="nav-icon"
 							onClick={() => console.log("ulubione")}>
 							<img src={iconFavourite} alt="ulubione" className="nav-iconFav-img" />
 						</a>
-						<a href="koszyk" className="nav-icon" onClick={() => console.log("koszyk")}>
+						<a
+							href="/koszyk"
+							className="nav-icon"
+							onClick={() => console.log("koszyk")}>
 							<img src={iconCart} alt="koszyk" className="nav-iconCart-img" />
 						</a>
-						<a href="konto" className="nav-icon" onClick={() => console.log("konto")}>
+						<a href="/konto" className="nav-icon" onClick={() => console.log("konto")}>
 							<img src={iconAcc} alt="konto" className="nav-iconAcc-img" />
 						</a>
 						<button onClick={Logout}>Wyloguj się</button>
 					</>
 				)}
-				{localStorage.getItem("token") == null && <a href="register">Zaloguj się</a>}
+				{localStorage.getItem("token") == null && <a href="/register">Zaloguj się</a>}
 			</div>
 		</nav>
 	);
