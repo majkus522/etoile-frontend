@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime, Float
+from sqlalchemy import Column, Integer, String, DateTime
 from app.db.base import Base
+
 
 class BlogPost(Base):
     __tablename__ = "blog_posts"
