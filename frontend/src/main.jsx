@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 				<Route path="/register" element={<Register />} />
 				<Route path="/creator" element={<Creator />} />
 				<Route path="/postCreator" element={<PostCreator />} />
-				<Route path="/blog" element={<Blog />} />
+				<Route path="/blog/*" element={<Blog />} />
 				<Route path="/konto/*" element={<Konto />} />
 			</Routes>
 		</BrowserRouter>
