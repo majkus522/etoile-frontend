@@ -1,29 +1,15 @@
 import React from "react";
+import iconSample from "../../assets/Sample.png";
 
-const FavoritesSuggestions = ({ items }) => {
+const FavoritesSuggestions = ({ product }) => {
 	return (
-		<div className="suggestions-section">
-			<h2 className="suggestions-heading">Zainspirowane Twoimi ulubionymi</h2>
-			<div className="suggestions-grid">
-				{items.map((item) => (
-					<div key={item.id} className="suggested-card shadow-sm">
-						<div className="suggested-img-placeholder">
-							<div className="img-box">ID: {item.id}</div>
-						</div>
-						<div className="suggested-info">
-							{item.label && <span className="promo-label">{item.label}</span>}
-							<div className="suggested-price-row">
-								<span className="s-price">
-									{item.price.toFixed(2).replace(".", ",")} zł
-								</span>
-							</div>
-							{item.isSmart && <span className="smart-badge small">smart</span>}
-							<p className="suggested-title">{item.title}</p>
-							<p className="suggested-delivery">dostawa w sobotę</p>
-						</div>
-					</div>
-				))}
-			</div>
+		<div className="upsell-box shadow">
+			<a href="/" className="upsell-img">
+				<img src={iconSample} alt="produkt" />
+			</a>
+			<p className="price-mid">{product.price} zł</p>
+			<p className="upsell-text">{product.title}</p>
+			<button className="add-btn">DO KOSZYKA</button>
 		</div>
 	);
 };

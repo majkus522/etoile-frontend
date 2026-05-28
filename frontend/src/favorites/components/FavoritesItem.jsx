@@ -1,51 +1,30 @@
 import React from "react";
+import iconSample from "../../assets/Sample.png"; // Używamy tego samego assetu co w koszyku
 
 const FavoritesItem = ({ product, onToggleCheck }) => {
 	return (
-		<div className="fav-item-row">
-			<div className="fav-item-left">
-				<label className="fav-checkbox-label">
-					<input type="checkbox" checked={product.checked} onChange={onToggleCheck} />
-					<span className="checkbox-custom"></span>
-				</label>
+		<div className="cart-product">
+			{/* Gwiazdka jako checkbox identyczna jak w koszyku */}
+			<label className="star-checkbox">
+				<input type="checkbox" checked={product.checked} onChange={onToggleCheck} />
+				<span className="star-icon"></span>
+			</label>
 
-				<div className="fav-item-img-placeholder">
-					<div className="img-box">ID: {product.id}</div>
+			<a href="/" className="cart-koszyk">
+				<img src={iconSample} alt="produkt" />
+			</a>
+
+			<div className="product-info">
+				<p className="product-name">{product.title}</p>
+				<span className="seller-tag">od {product.seller}</span>
+				<div className="product-row" style={{ marginTop: "10px" }}>
+					<span className="price-big">{product.price} zł</span>
+					<button
+						className="btn-etoile green"
+						style={{ width: "auto", padding: "8px 20px", margin: 0 }}>
+						DO KOSZYKA
+					</button>
 				</div>
-
-				<div className="fav-item-details">
-					<h3 className="item-title">{product.title}</h3>
-					<p className="seller-info">
-						od <span className="seller-name">{product.seller}</span> -{" "}
-						<span className="rating">{product.rating}</span>
-					</p>
-					<div className="super-seller-badge">
-						<span className="orange-dot">S</span> Super Sprzedawca
-					</div>
-
-					<div className="price-mobile-row">
-						<span className="price-text">
-							{product.price.toFixed(2).replace(".", ",")} zł
-						</span>
-						{product.isSmart && <span className="smart-badge">smart</span>}
-					</div>
-
-					<p className="delivery-text">{product.delivery}</p>
-				</div>
-			</div>
-
-			<div className="fav-item-right">
-				<div className="price-section">
-					<span className="price-text">
-						{product.price.toFixed(2).replace(".", ",")} zł
-					</span>
-					{product.isSmart && <span className="smart-badge">smart</span>}
-				</div>
-				<div className="actions-section">
-					<button className="btn-secondary">INNE OFERTY</button>
-					<button className="btn-primary-orange">DODAJ DO KOSZYKA</button>
-				</div>
-				<button className="more-options-btn">⋮</button>
 			</div>
 		</div>
 	);
