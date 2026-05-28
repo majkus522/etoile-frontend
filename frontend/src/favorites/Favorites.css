@@ -1,14 +1,18 @@
 /* Główne style kontenerów strony Ulubionych */
 .fav-page-container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 2rem;
-	text-align: left;
+	background-color: #f9faf5; /* TUTAJ wpisz kolor bocznych paneli */
+	width: 100%;
+	min-height: 100vh;
+	padding: 30px 0;
 }
 
 .fav-layout {
 	display: flex;
-	gap: 30px;
+	max-width: 1200px; /* Blokada szerokości podstrony */
+	margin: 0 auto; /* Centrowanie całej zawartości na ekranie */
+	padding: 0 20px; /* Margines bezpieczeństwa dla mniejszych ekranów */
+	gap: 20px;
+	text-align: left; /* Teksty i wyrównanie sztywno do lewej */
 }
 
 .fav-main {
@@ -332,6 +336,47 @@
 
 	.fav-upsell-img img {
 		height: 55px;
+		width: 100%;
+	}
+}
+
+/* Styl dla dolnego paska akcji grupowej */
+.fav-bottom-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 25px;
+	padding-top: 20px;
+	border-top: 2px dashed #eee;
+}
+
+.fav-bottom-count {
+	font-size: 15px;
+	color: #504f57;
+}
+
+/* Wariant przycisku w kolorze zaznaczonej gwiazdki */
+.fav-btn-etoile.fav-navy {
+	background: #a39172;
+	color: white;
+	font-size: 14px;
+	padding: 12px 28px;
+	border-radius: 4px;
+	transition: background 0.2s;
+}
+
+.fav-btn-etoile.fav-navy:hover {
+	background: #c4ae89; /* Lekko rozjaśniony granat przy najechaniu */
+}
+
+/* Dostosowanie responsywności dolnego paska */
+@media (max-width: 768px) {
+	.fav-bottom-bar {
+		flex-direction: column;
+		gap: 12px;
+		text-align: center;
+	}
+	.fav-btn-etoile.fav-navy {
 		width: 100%;
 	}
 }

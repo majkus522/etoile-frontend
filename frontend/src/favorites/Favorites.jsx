@@ -47,6 +47,14 @@ function Favorites() {
 		setProducts((prev) => prev.filter((p) => !p.checked));
 	};
 
+	const handleAddSelectedToCart = () => {
+		const selected = products.filter((p) => p.checked);
+		console.log("Dodawanie do koszyka:", selected);
+		// Tutaj logika dodawania do globalnego koszyka aplikacji
+	};
+
+	const checkedCount = products.filter((p) => p.checked).length;
+
 	useTitle("Etoile - Ulubione");
 
 	return (
@@ -56,14 +64,12 @@ function Favorites() {
 				<div className="fav-layout">
 					<div className="fav-main">
 						<h1 className="fav-heading">Ulubione</h1>
-
 						<div className="fav-white-card fav-shadow">
 							<FavoritesHeader
 								products={products}
 								onToggleAll={handleToggleAll}
 								onRemoveSelected={handleRemoveSelected}
 							/>
-
 							<div className="fav-delivery-section">
 								{products.map((item) => (
 									<FavoritesItem
@@ -73,6 +79,25 @@ function Favorites() {
 									/>
 								))}
 							</div>
+
+							{/* Przywrócony dolny pasek akcji grupowej */}
+							{checkedCount > 0 && (
+								<div className="fav-bottom-bar">
+									<span className="fav-bottom-count">
+										Zaznaczono: <strong>{checkedCount}</strong>{" "}
+										{checkedCount === 1
+											? "produkt"
+											: checkedCount < 5
+												? "produkty"
+												: "produktów"}
+									</span>
+									<button
+										className="fav-btn-etoile fav-navy"
+										onClick={handleAddSelectedToCart}>
+										DODAJ ZAZNACZONE DO KOSZYKA
+									</button>
+								</div>
+							)}
 						</div>
 
 						<h2 className="fav-upsell-heading">Zainspirowane Twoimi ulubionymi</h2>
