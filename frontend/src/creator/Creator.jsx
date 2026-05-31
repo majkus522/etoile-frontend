@@ -8,6 +8,7 @@ import JewelryTypeSelector from "./componenty/TypeSelector.jsx";
 import LengthSelector from "./componenty/LengthSelector.jsx";
 import CharmsSelector from "./componenty/CharmsSelector.jsx";
 import PriceSummary from "./componenty/PriceSummary.jsx";
+import JewelryPreview from "./componenty/JewelryPreview.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import { useTitle } from "../main.jsx";
@@ -135,25 +136,25 @@ function Creator() {
 						/>
 					</div>
 
-					<JewelryTypeSelector
-						selectedType={selectedType}
-						setSelectedType={setSelectedType}
-					/>
+							<JewelryTypeSelector
+								selectedType={selectedType}
+								setSelectedType={setSelectedType}
+							/>
 
-					<MaterialSelector
-						selectedMaterial={selectedMaterial}
-						setSelectedMaterial={setSelectedMaterial}
-						isOpen={isOpen}
-						setIsOpen={setIsOpen}
-					/>
+							<MaterialSelector
+								selectedMaterial={selectedMaterial}
+								setSelectedMaterial={setSelectedMaterial}
+								isOpen={isOpen}
+								setIsOpen={setIsOpen}
+							/>
 
-					<LengthSelector
-						selectedType={selectedType}
-						selectedLength={selectedLength}
-						setSelectedLength={setSelectedLength}
-						isLengthOpen={isLengthOpen}
-						setIsLengthOpen={setIsLengthOpen}
-					/>
+							<LengthSelector
+								selectedType={selectedType}
+								selectedLength={selectedLength}
+								setSelectedLength={setSelectedLength}
+								isLengthOpen={isLengthOpen}
+								setIsLengthOpen={setIsLengthOpen}
+							/>
 
 					<CharmsSelector
 						selectedCharm1={selectedCharm1}

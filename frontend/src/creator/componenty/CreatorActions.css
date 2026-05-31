@@ -9,15 +9,37 @@
 .creator-favorite-button,
 .creator-cart-button {
 	height: 60px;
+	border: 2px solid #27314f;
+	background-color: #f8f6f1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-	box-sizing: border-box;
 	width: 100%;
 	cursor: pointer;
-	font-family: inherit;
-	border-radius: 0;
+
+	transition:
+		background-color 0.25s ease,
+		border-color 0.25s ease,
+		transform 0.2s ease;
+}
+
+.creator-favorite-button:hover {
+	background-color: #afc0db;
+	border-color: #0a1128;
+}
+
+.creator-favorite-button:active {
+	transform: scale(0.95);
+}
+
+.creator-cart-button:hover {
+	background-color: #afc0db;
+	border-color: #0a1128;
+}
+
+.creator-cart-button:active {
+	transform: scale(0.95);
 }
 
 .creator-favorite-button {
@@ -26,20 +48,20 @@
 }
 
 .creator-cart-button {
-	border: none;
-	background-color: #0a1128;
+	border: 2px solid #27314f;
+	background-color: #f8f6f1;
 }
 
 .creator-favorite-icon {
-	font-size: 30px;
-	color: #1c2745;
-	line-height: 1;
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
 }
 
 .creator-cart-icon {
-	font-size: 22px;
-	color: #ffffff;
-	line-height: 1;
+	width: 22px;
+	height: 22px;
+	object-fit: contain;
 }
 
 .creator-favorite-text {
@@ -52,7 +74,7 @@
 .creator-cart-text {
 	font-size: 21px;
 	font-weight: 600;
-	color: #ffffff;
+	color: #0f1838;
 	line-height: 1;
 }
 
