@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import defaultPostImage from "../images/post1.jpg";
@@ -6,53 +8,88 @@ import "./BlogPostPage.css";
 export default function BlogPostPage() {
 	const { id } = useParams();
 
-	const [post, setPost] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState("");
+	const post = posts.find((post) => post.id === Number(id));
+	const [isFavorite, setIsFavorite] = useState(false);
+	const [favoriteId, setFavoriteId] = useState(null);
 
 	useEffect(() => {
-		async function fetchPost() {
+		const loadFavorites = async () => {
 			try {
-				setLoading(true);
-				setError("");
-
-				const response = await fetch(`http://localhost:8000/posts/${id}`);
-
-				if (response.status === 404) {
-					throw new Error("Nie znaleziono posta.");
-				}
+				const response = await fetch("http://localhost:8000/favorites", {
+					method: "GET",
+					headers: {
+						token: localStorage.getItem("token"),
+					},
+				});
 
 				if (!response.ok) {
-					const errorText = await response.text();
-					throw new Error(
-						`Nie udało się pobrać posta. Status: ${response.status}. ${errorText}`
-					);
+					throw new Error("Nie udało się pobrać ulubionych");
 				}
 
 				const data = await response.json();
-				setPost(data);
+
+				const favorite = data.find((f) => f.product_id === post?.id);
+
+				if (favorite) {
+					setIsFavorite(true);
+					setFavoriteId(favorite.favorite_id);
+				}
 			} catch (err) {
-				setError(err.message);
-			} finally {
-				setLoading(false);
+				console.error(err);
 			}
+		};
+
+		if (post) {
+			loadFavorites();
 		}
+	}, [post]);
 
-		fetchPost();
-	}, [id]);
+	const toggleFavorite = async () => {
+		try {
+			if (isFavorite) {
+				const response = await fetch("http://localhost:8000/favorites", {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						token: localStorage.getItem("token"),
+					},
+					body: JSON.stringify({
+						favorite_id: favoriteId,
+					}),
+				});
 
-	if (loading) {
-		return <p className="single-post-message">Ładowanie posta...</p>;
-	}
+				if (!response.ok) {
+					throw new Error("Błąd usuwania");
+				}
 
-	if (error) {
-		return (
-			<div className="single-post-message">
-				<h1>{error}</h1>
-				<Link to="/blog">Wróć do bloga</Link>
-			</div>
-		);
-	}
+				setIsFavorite(false);
+				setFavoriteId(null);
+			} else {
+				const response = await fetch("http://localhost:8000/favorites", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						token: localStorage.getItem("token"),
+					},
+					body: JSON.stringify({
+						product_id: null,
+						project_id: post.id,
+					}),
+				});
+
+				if (!response.ok) {
+					throw new Error("Błąd dodawania");
+				}
+
+				const data = await response.json();
+
+				setIsFavorite(true);
+				setFavoriteId(data.favorite_id);
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	if (!post) {
 		return (
@@ -69,7 +106,13 @@ export default function BlogPostPage() {
 				← Wróć do bloga
 			</Link>
 
-			<h1 className="single-post-title">{post.title}</h1>
+			<div className="single-post-header">
+				<h1 className="single-post-title">{post.title}</h1>
+
+				<button className="favorite-btn" onClick={toggleFavorite}>
+					{isFavorite ? "★" : "☆"}
+				</button>
+			</div>
 
 			<img src={defaultPostImage} alt={post.title} className="single-post-image" />
 
