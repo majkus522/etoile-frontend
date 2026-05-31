@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { posts } from "../postsData.js";
+import defaultPostImage from "../images/post1.jpg";
 import "./BlogPostPage.css";
 
 export default function BlogPostPage() {
@@ -92,8 +93,8 @@ export default function BlogPostPage() {
 
 	if (!post) {
 		return (
-			<div>
-				<h1>Nie znaleziono posta</h1>
+			<div className="single-post-message">
+				<h1>Post nie istnieje.</h1>
 				<Link to="/blog">Wróć do bloga</Link>
 			</div>
 		);
@@ -113,9 +114,9 @@ export default function BlogPostPage() {
 				</button>
 			</div>
 
-			<img src={post.image} alt={post.title} className="single-post-image" />
+			<img src={defaultPostImage} alt={post.title} className="single-post-image" />
 
-			<p className="single-post-content">{post.content}</p>
+			<p className="single-post-content">{post.description || "Brak treści posta."}</p>
 		</article>
 	);
 }

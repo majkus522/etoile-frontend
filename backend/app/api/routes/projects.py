@@ -1,10 +1,14 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.models.project import CustomProject
 from app.schemas.project import ProjectCreate
 from app.core.security import get_current_user
+
+
+from app.api.routes.favorites import get_current_user_id_for_favorites
 
 router = APIRouter()
 
@@ -19,8 +23,5 @@ def create_project(project: ProjectCreate, token: Annotated[str | None, Header()
     )
     db.add(new_project)
     db.commit()
-    return {"msg": "created"}
-
-@router.get("/")
-def get_project(db: Session = Depends(get_db)):
-    return db.query(CustomProject).all()
+    db.refresh(db_project)
+    return {"msg": "Projekt zapisany", "project_id": db_project.project_id}

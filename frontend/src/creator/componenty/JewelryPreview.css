@@ -1,0 +1,28 @@
+.jewelry-preview {
+	width: 40%;
+	padding-right: 36px;
+	box-sizing: border-box;
+}
+
+.preview-box {
+	position: sticky;
+	top: 110px;
+	width: 100%;
+}
+
+.preview-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	border: 1.5px solid #ddd7cc;
+	background-color: #fbfaf7;
+}
+
+.preview-title {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 28px;
+	font-family: Georgia, serif;
+	font-weight: 400;
+	color: #0a1128;
+}

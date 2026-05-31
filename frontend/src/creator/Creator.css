@@ -17,12 +17,25 @@
 
 .creator-wrapper {
 	width: 100%;
-	max-width: 800px;
+	max-width: 1280px;
 	margin: 0 auto;
 	padding-left: 28px;
 	padding-right: 28px;
 	box-sizing: border-box;
 	text-align: left;
+}
+
+.creator-layout {
+	display: flex;
+	gap: 0px;
+	align-items: flex-start;
+}
+
+.creator-panel {
+	width: 60%;
+	padding-left: 36px;
+	border-left: 1.5px solid #ddd7cc;
+	box-sizing: border-box;
 }
 
 @media (max-width: 700px) {
@@ -34,5 +47,25 @@
 		max-width: 100%;
 		padding-left: 18px;
 		padding-right: 18px;
+	}
+}
+
+@media (max-width: 900px) {
+	.creator-layout {
+		flex-direction: column;
+	}
+
+	.jewelry-preview,
+	.creator-panel {
+		width: 100%;
+	}
+
+	.creator-panel {
+		border-left: none;
+		padding-left: 0;
+	}
+
+	.preview-box {
+		position: static;
 	}
 }
