@@ -1,14 +1,22 @@
-from fastapi import APIRouter, Depends
+from typing import Annotated
+from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.models.project import CustomProject
 from app.schemas.project import ProjectCreate
+from app.core.security import get_current_user
 
 router = APIRouter()
 
 @router.post("/")
-def create_project(project: ProjectCreate, db: Session = Depends(get_db)):
-    new_project = CustomProject(**project)
+def create_project(project: ProjectCreate, token: Annotated[str | None, Header()] = None, db: Session = Depends(get_db)):
+    user_id=get_current_user(token, db)
+    new_project = CustomProject(
+        user_id=user_id,
+        name = project.name,
+        total_price = project.total_price,
+        created_at = project.created_at
+    )
     db.add(new_project)
     db.commit()
     return {"msg": "created"}

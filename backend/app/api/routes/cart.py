@@ -4,13 +4,21 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.models.cart import Cart
 from app.schemas.cart import CartCreate, CartUpdate, CartDelete
+from app.core.security import get_current_user
 
 router = APIRouter()
 
 # ========== dodawanie do koszyka ========== #
 @router.post("/")
-def add_to_cart(cart_item: CartCreate, db: Session = Depends(get_db)):
-    db_cart = Cart(**cart_item.model_dump())
+def add_to_cart(cart_item: CartCreate, token: Annotated[str | None, Header()] = None, db: Session = Depends(get_db)):
+    user_id = get_current_user(token, db)
+    db_cart = Cart(
+        cart_item_id = cart_item.cart_item_id,
+        user_id = user_id,
+        product_id = cart_item.product_id,
+        project_id = cart_item.project_id,
+        quantity = cart_item.quantity
+    )
     db.add(db_cart)
     db.commit()
     db.refresh(db_cart)
